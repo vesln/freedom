@@ -1,10 +1,5 @@
 Freedom::Application.routes.draw do
   get "dashboards/index"
-
-  devise_scope :user do
-    get "sign_in", :to => "devise/sessions#new"
-    get "sign_out", :to => "devise/sessions#destroy"
-  end
-  
+  devise_for :user
   root :to => 'dashboards#index'
 end
