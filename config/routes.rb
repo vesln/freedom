@@ -1,9 +1,11 @@
 Freedom::Application.routes.draw do
+  # Resources.
+  resources :projects
   resources :users
   
-  get "dashboards/index"
-  
+  # Devise gem.
   devise_for :user
   
+  # Home.
   root :to => 'dashboards#index'
 end
