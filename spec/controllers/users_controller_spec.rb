@@ -10,9 +10,21 @@ describe UsersController do
     attributes_for(:user)
   end
   
+  def sign_user!
+    sign_in create(:user)
+  end
+  
   before(:each) do
-    @auth_user = create(:user)
+    @auth_user = create(:admin)
     sign_in @auth_user
+  end
+  
+  describe 'non-admin access' do
+    it 'should restrict non-admins' do
+      sign_user!
+      get :index, {}
+      response.should redirect_to('/')
+    end
   end
 
   describe "GET index" do

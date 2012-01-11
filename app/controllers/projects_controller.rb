@@ -3,6 +3,8 @@
 # MIT License
 
 class ProjectsController < ApplicationController
+  before_filter :authenticate_admin!
+  
   def index
     @projects = Project.all
 
