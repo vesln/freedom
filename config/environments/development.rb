@@ -1,3 +1,7 @@
+# Freedom - Mind-blowing issue tracker.
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+
 Freedom::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 

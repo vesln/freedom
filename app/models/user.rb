@@ -1,9 +1,12 @@
+# Freedom - Mind-blowing issue tracker.
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  # Devise configurations.
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
+  # Setup accessible (or protected) attributes for the model.
   attr_accessible :email, :password, :password_confirmation, :remember_me, :admin
   
   # Checks if user is admin.

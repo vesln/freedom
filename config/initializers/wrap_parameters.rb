@@ -1,3 +1,7 @@
+# Freedom - Mind-blowing issue tracker.
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+
 # Be sure to restart your server when you modify this file.
 #
 # This file contains settings for ActionController::ParamsWrapper which

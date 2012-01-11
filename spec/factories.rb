@@ -1,3 +1,7 @@
+# Freedom - Mind-blowing issue tracker.
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+
 FactoryGirl.define do
   factory :user do
     sequence :email do |n|
