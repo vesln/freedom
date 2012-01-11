@@ -1,4 +1,9 @@
 Freedom::Application.routes.draw do
+  
+  # Accounts
+  get "account" => 'accounts#edit'
+  put "account" => 'accounts#update'
+
   # Resources.
   resources :projects
   resources :users
