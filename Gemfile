@@ -3,7 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.3'
 gem 'mysql2'
 gem 'jquery-rails'
-gem "rspec-rails", :group => [:test, :development]
+gem 'rspec-rails', :group => [:test, :development]
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.
