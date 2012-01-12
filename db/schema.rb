@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120111190932) do
+ActiveRecord::Schema.define(:version => 20120112082924) do
+
+  create_table "milestones", :force => true do |t|
+    t.string   "title"
+    t.text     "goals"
+    t.integer  "open_issues",   :default => 0
+    t.integer  "closed_issues", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+  end
 
   create_table "projects", :force => true do |t|
     t.string   "name"

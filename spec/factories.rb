@@ -23,4 +23,10 @@ FactoryGirl.define do
     name 'Example project'
     description 'Example description'
   end
+  
+  factory :milestone do
+    title '1.0'
+    goals 'Do stuff.'
+    project_id 1
+  end
 end

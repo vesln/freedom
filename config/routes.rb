@@ -4,15 +4,18 @@
 
 Freedom::Application.routes.draw do
   
-  # Accounts
+  # Account.
   get "account" => 'accounts#edit'
   put "account" => 'accounts#update'
 
   # Resources.
-  resources :projects
+  resources :projects do
+    resources :milestones
+  end
   resources :users
   
-  # Devise gem.
+  # Devise gem. 
+  # Handles sign in and sign out.
   devise_for :user
   
   # Home.

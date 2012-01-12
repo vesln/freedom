@@ -2,6 +2,7 @@
 # Veselin Todorov <hi@vesln.com>
 # MIT License
 
-class Project < ActiveRecord::Base
-  has_many :milestones
+require 'spec_helper'
+
+describe Milestone do
 end

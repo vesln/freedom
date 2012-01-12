@@ -2,6 +2,6 @@
 # Veselin Todorov <hi@vesln.com>
 # MIT License
 
-class Project < ActiveRecord::Base
-  has_many :milestones
+class Milestone < ActiveRecord::Base
+  belongs_to :project
 end
