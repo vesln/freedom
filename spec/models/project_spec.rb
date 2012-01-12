@@ -43,7 +43,7 @@ describe Project do
     end
     
     it 'should have admin access' do 
-      Project::ADMIN.should eq (2)
+      Project::MODERATOR.should eq (2)
     end
   end
   

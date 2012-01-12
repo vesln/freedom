@@ -50,4 +50,14 @@ FactoryGirl.define do
     goals 'Do stuff.'
     project_id 1
   end
+  
+  factory :users_project do
+    sequence :user_id do |n|
+      n
+    end
+    sequence :project_id do |n|
+      n
+    end
+    access 1
+  end
 end

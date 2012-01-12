@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   
   # Checks if current user is admin.
   # If he's not it will redirect him to the root url.
-  def authenticate_admin!
+  def authorize_admin!
     redirect_to('/') unless current_user.is_admin?
   end
   

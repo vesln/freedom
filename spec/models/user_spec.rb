@@ -41,4 +41,11 @@ describe User do
       user.is_admin?.should === true
     end
   end
+  
+  describe 'Scope' do
+    it 'should have not_in_project scope' do
+      expected = User.joins('LEFT JOIN `users_projects` ON `users_projects`.`user_id` = `users`.`id`').where("`users_projects`.`project_id` != ? OR `users_projects`.`project_id` IS NULL", 1).to_sql
+      User.not_in_project(1).to_sql.should == expected
+    end
+  end
 end

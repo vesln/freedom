@@ -25,8 +25,8 @@
 
 class Project < ActiveRecord::Base
   # Access.
-  USER  = 1
-  ADMIN = 2
+  USER      = 1
+  MODERATOR = 2
   
   # Associations.
   has_many :milestones

@@ -1,0 +1,34 @@
+<%= form_for([current_project, @users_project]) do |f| %>
+  <% if @users_project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@users_project.errors.count, "error") %> prohibited this users_project from being saved:</h2>
+
+      <ul>
+        <% @users_project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if (@users_project.persisted?) %>
+    <div class="field">
+      <%= f.label :user_id %><br />
+      <%= f.text_field(:user, :value => User.find_by_id(@users_project.user_id).email, :disabled => 'disabled') %>
+      <%= f.hidden_field(:user_id) %>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= f.label :user_id %><br />
+      <%= f.collection_select :user_id, User.not_in_project(current_project.id), :id, :email %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :access %><br />
+    <%= f.select :access, access_roles %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

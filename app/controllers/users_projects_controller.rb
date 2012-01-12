@@ -23,76 +23,68 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class ProjectsController < ApplicationController
+class UsersProjectsController < ApplicationController
   
   # All controller actions require admin role.
   before_filter :authorize_admin!
   
   def index
-    @projects = Project.all
+    @users = User.includes(:users_projects).where(['users_projects.project_id = ?', current_project.id]).all
 
     respond_to do |format|
       format.html
-      format.json { render json: @projects }
-    end
-  end
-
-  def show
-    @project = Project.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @project }
+      format.json { render json: @users }
     end
   end
 
   def new
-    @project = Project.new
+    @users_project = UsersProject.new
 
     respond_to do |format|
       format.html
-      format.json { render json: @project }
+      format.json { render json: @users_project }
     end
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @users_project = UsersProject.find(params[:id])
   end
 
   def create
-    @project = Project.new(params[:project])
+    @users_project = UsersProject.new(params[:users_project])
+    @users_project.project = current_project
 
     respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render json: @project, status: :created, location: @project }
+      if @users_project.save
+        format.html { redirect_to project_users_projects_url(current_project), notice: 'Users project was successfully created.' }
+        format.json { render json: @users_project, status: :created, location: @users_project }
       else
         format.html { render action: "new" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.json { render json: @users_project.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
-    @project = Project.find(params[:id])
+    @users_project = UsersProject.find(params[:id])
 
     respond_to do |format|
-      if @project.update_attributes(params[:project])
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+      if @users_project.update_attributes(params[:users_project])
+        format.html { redirect_to project_users_projects_url(current_project), notice: 'Users project was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.json { render json: @users_project.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @project = Project.find(params[:id])
-    @project.destroy
+    @users_project = UsersProject.find(params[:id])
+    @users_project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url }
+      format.html { redirect_to project_users_projects_url(current_project) }
       format.json { head :ok }
     end
   end

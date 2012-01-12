@@ -23,15 +23,16 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class UsersProject < ActiveRecord::Base
+module ProjectsHelper
   
-  # Associations.
-  belongs_to :user
-  belongs_to :project
+  # Returns human name for role.
+  def name_for(role)
+    @roles ||= {Project::USER => 'User', Project::MODERATOR => 'Moderator'}
+    @roles[role]
+  end
   
-  # Validation rules.
-  validates_presence_of   :user_id
-  validates_presence_of   :project_id
-  validates_uniqueness_of :user_id, :scope => :project_id
-  
+  # Returns hash with project access roles. Admin, Moderator, etc.
+  def access_roles
+    {name_for(Project::USER) => Project::USER, name_for(Project::MODERATOR) => Project::MODERATOR}
+  end
 end

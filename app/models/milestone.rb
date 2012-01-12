@@ -24,6 +24,7 @@
 #++
 
 class Milestone < ActiveRecord::Base
+  
   # Associations.
   belongs_to :project
   

@@ -23,15 +23,34 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class UsersProject < ActiveRecord::Base
-  
-  # Associations.
-  belongs_to :user
-  belongs_to :project
-  
-  # Validation rules.
-  validates_presence_of   :user_id
-  validates_presence_of   :project_id
-  validates_uniqueness_of :user_id, :scope => :project_id
-  
+require "spec_helper"
+
+describe UsersProjectsController do
+  describe "routing" do
+
+    it "routes to #index" do
+      get("/projects/1/users_projects").should route_to("users_projects#index", :project_id => "1")
+    end
+
+    it "routes to #new" do
+      get("/projects/1/users_projects/new").should route_to("users_projects#new", :project_id => "1")
+    end
+
+    it "routes to #edit" do
+      get("/projects/1/users_projects/1/edit").should route_to("users_projects#edit", :id => "1", :project_id => "1")
+    end
+
+    it "routes to #create" do
+      post("/projects/1/users_projects").should route_to("users_projects#create", :project_id => "1")
+    end
+
+    it "routes to #update" do
+      put("/projects/1/users_projects/1").should route_to("users_projects#update", :id => "1", :project_id => "1")
+    end
+
+    it "routes to #destroy" do
+      delete("/projects/1/users_projects/1").should route_to("users_projects#destroy", :id => "1", :project_id => "1")
+    end
+
+  end
 end

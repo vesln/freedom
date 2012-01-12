@@ -23,15 +23,24 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class UsersProject < ActiveRecord::Base
+require 'spec_helper'
+
+describe ProjectsHelper do
   
-  # Associations.
-  belongs_to :user
-  belongs_to :project
+  describe 'name_for' do
+    it 'should return valid name for user' do
+      name_for(Project::USER).should eq 'User'
+    end
+    
+    it 'should return valid name for moderator' do
+      name_for(Project::MODERATOR).should eq 'Moderator'
+    end
+  end
   
-  # Validation rules.
-  validates_presence_of   :user_id
-  validates_presence_of   :project_id
-  validates_uniqueness_of :user_id, :scope => :project_id
-  
+  describe 'access_roles' do
+    it 'should return hash with project access roles' do
+      expected = {name_for(Project::USER) => Project::USER, name_for(Project::MODERATOR) => Project::MODERATOR}
+      access_roles.should eq expected
+    end
+  end
 end

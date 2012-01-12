@@ -32,11 +32,11 @@ Freedom::Application.routes.draw do
   # Resources.
   resources :projects do
     resources :milestones
+    resources :users_projects, :except => :show
   end
   resources :users
   
-  # Devise gem. 
-  # Handles sign in and sign out.
+  # Devise gem - Handles authentication.
   devise_for :user
   
   # Home.

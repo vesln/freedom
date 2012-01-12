@@ -26,7 +26,7 @@
 class MilestonesController < ApplicationController
   
   # All controller actions require admin role.
-  before_filter :authenticate_admin!
+  before_filter :authorize_admin!
   
   def index
     @milestones = Milestone.all
