@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   
   # Methods used in the controller and the templates.
-  helper_method :current_project
+  helper_method :current_project, :can_manage_project
   
   # Turn on request forgery protection.
   protect_from_forgery
@@ -44,12 +44,24 @@ class ApplicationController < ActionController::Base
   # Checks if current user is admin.
   # If he's not it will redirect him to the root url.
   def authorize_admin!
-    redirect_to('/') unless current_user.is_admin?
+    handle_unauthorized unless current_user.is_admin?
   end
   
   # Returns the current project.
   # Also, note that the project is cached in a var.
   def current_project
     @current_project ||= Project.find_by_id(params[:project_id])
+  end
+  
+  # Authorizes users with level of admin or project moderators.
+  def authorize_admin_or_project_moderator!
+    if !current_user.can_moderate?(current_project.id)
+      handle_unauthorized
+    end
+  end
+  
+  # Handles unauthorized users.
+  def handle_unauthorized
+    redirect_to('/')
   end
 end

@@ -35,4 +35,5 @@ class Project < ActiveRecord::Base
     
   # Validaton rules.
   validates_presence_of :name
+  
 end

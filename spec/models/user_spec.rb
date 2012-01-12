@@ -32,6 +32,13 @@ describe User do
     it { should have_many(:projects) }
   end
   
+  describe 'Scope' do
+    it 'should have not_in_project scope' do
+      expected = User.joins('LEFT JOIN `users_projects` ON `users_projects`.`user_id` = `users`.`id`').where("`users_projects`.`project_id` != ? OR `users_projects`.`project_id` IS NULL", 1).to_sql
+      User.not_in_project(1).to_sql.should == expected
+    end
+  end
+  
   describe "is_admin?" do
     it "should respond with boolean" do
       user = build(:user)
@@ -42,10 +49,22 @@ describe User do
     end
   end
   
-  describe 'Scope' do
-    it 'should have not_in_project scope' do
-      expected = User.joins('LEFT JOIN `users_projects` ON `users_projects`.`user_id` = `users`.`id`').where("`users_projects`.`project_id` != ? OR `users_projects`.`project_id` IS NULL", 1).to_sql
-      User.not_in_project(1).to_sql.should == expected
+  describe 'can_moderate?' do
+    it 'shnould check if user is moderator for supplied project.' do
+      user = create(:user, :admin => true)
+      user.can_moderate?(1).should === true
+      
+      user = create(:user, :admin => false)
+      users_project = create(:users_project, :project_id => 1, :user_id => user.id, access: Project::MODERATOR)
+      user.can_moderate?(1).should === true
+      
+      user = create(:user, :admin => false)
+      users_project = create(:users_project, :project_id => 1, :user_id => user.id, access: Project::USER)
+      user.can_moderate?(1).should === false
+      
+      user = create(:user, :admin => false)
+      user.can_moderate?(1).should === false
     end
   end
+  
 end

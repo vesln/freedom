@@ -45,4 +45,16 @@ class User < ActiveRecord::Base
   def is_admin?
     admin
   end
+  
+  # Checks if user is moderator for supplied project.
+  def can_moderate?(project_id)
+    return true if is_admin?
+    UsersProject.where(:user_id => id, :project_id => project_id, :access => Project::MODERATOR).exists?
+  end
+  
+  # Checks if user has access to supplied project.
+  def has_access_to(project_id)
+    return true if is_admin?
+    UsersProject.where(:user_id => id, :project_id => project_id).exists?
+  end
 end
