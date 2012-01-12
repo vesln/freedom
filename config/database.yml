@@ -14,14 +14,10 @@ development:
   host: localhost
 
 test:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: freedom_test
+  adapter: sqlite3
+  database: db/test.sqlite3
   pool: 5
-  username: root
-  password:
-  host: localhost
+  timeout: 5000
 
 production:
   adapter: mysql2
