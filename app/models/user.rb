@@ -24,6 +24,11 @@
 #++
 
 class User < ActiveRecord::Base
+  
+  # Associations.
+  has_many :users_projects, :dependent => :destroy
+  has_many :projects, :through => :users_projects
+  
   # Devise configurations.
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 

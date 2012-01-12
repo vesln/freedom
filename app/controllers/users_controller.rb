@@ -24,6 +24,8 @@
 #++
 
 class UsersController < ApplicationController
+  
+  # All controller actions require admin role.
   before_filter :authenticate_admin!
   
   def index

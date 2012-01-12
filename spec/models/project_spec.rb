@@ -29,6 +29,8 @@ describe Project do
   
   describe "Associations" do
     it { should have_many(:milestones) }
+    it { should have_many(:users_projects) }
+    it { should have_many(:users) }
   end
 
   describe "Validation" do

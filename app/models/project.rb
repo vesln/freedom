@@ -30,7 +30,9 @@ class Project < ActiveRecord::Base
   
   # Associations.
   has_many :milestones
-  
+  has_many :users_projects, :dependent => :destroy
+  has_many :users, :through => :users_projects
+    
   # Validaton rules.
   validates_presence_of :name
 end

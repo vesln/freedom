@@ -26,6 +26,12 @@
 require 'spec_helper'
 
 describe User do
+  
+  describe "Associations" do
+    it { should have_many(:users_projects) }
+    it { should have_many(:projects) }
+  end
+  
   describe "is_admin?" do
     it "should respond with boolean" do
       user = build(:user)
