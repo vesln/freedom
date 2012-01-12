@@ -47,4 +47,11 @@ describe Project do
     end
   end
   
+  describe 'Scope' do
+    it 'should have for_user scope' do
+      expected = Project.includes(:users_projects).where(['`users_projects`.`user_id` = ?', 1]).to_sql
+      Project.for_user(1).to_sql.should == expected
+    end
+  end
+  
 end

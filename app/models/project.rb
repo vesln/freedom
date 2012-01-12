@@ -32,8 +32,11 @@ class Project < ActiveRecord::Base
   has_many :milestones
   has_many :users_projects, :dependent => :destroy
   has_many :users, :through => :users_projects
-    
+  
   # Validaton rules.
   validates_presence_of :name
+  
+  # Scope.
+  scope :for_user, lambda { |user_id| includes(:users_projects).where(['`users_projects`.`user_id` = ?', user_id]) }
   
 end

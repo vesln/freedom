@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for the model.
   attr_accessible :email, :password, :password_confirmation, :remember_me, :admin, :name
   
-  # Scopes.
+  # Scope.
   scope :not_in_project, lambda { |project_id| 
     joins('LEFT JOIN `users_projects` ON `users_projects`.`user_id` = `users`.`id`')
     .where("`users_projects`.`project_id` != ? OR `users_projects`.`project_id` IS NULL", project_id) 
@@ -57,4 +57,5 @@ class User < ActiveRecord::Base
     return true if is_admin?
     UsersProject.where(:user_id => id, :project_id => project_id).exists?
   end
+  
 end
