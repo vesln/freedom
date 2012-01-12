@@ -3,6 +3,10 @@
 # MIT License
 
 class Project < ActiveRecord::Base
+  # Access.
+  USER  = 1
+  ADMIN = 2
+  
   # Associations.
   has_many :milestones
   
