@@ -10,11 +10,23 @@ describe MilestonesController do
     attributes_for(:milestone)
   end
   
+  def sign_user!
+    sign_in create(:user)
+  end
+  
   before(:each) do
     @project = create(:project)
     @auth_user = create(:admin)
     sign_in @auth_user
     controller.stub(:current_project).and_return(@project)
+  end
+  
+  describe 'non-admin access' do
+    it 'should restrict non-admins' do
+      sign_user!
+      get :index, :project_id => @project.id
+      response.should redirect_to('/')
+    end
   end
   
   describe "GET index" do
