@@ -23,7 +23,10 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
+# DashboardsController represents the user dashboard page.
+# This is the first thing that user see after login.
 class DashboardsController < ApplicationController
+  
   def index
   end
 
