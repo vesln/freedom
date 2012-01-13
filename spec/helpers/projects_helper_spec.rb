@@ -27,19 +27,19 @@ require 'spec_helper'
 
 describe ProjectsHelper do
   
-  describe 'name_for' do
+  describe 'role' do
     it 'should return valid name for user' do
-      name_for(Project::USER).should eq 'User'
+      role(Project::USER).should eq 'User'
     end
     
     it 'should return valid name for moderator' do
-      name_for(Project::MODERATOR).should eq 'Moderator'
+      role(Project::MODERATOR).should eq 'Moderator'
     end
   end
   
   describe 'access_roles' do
     it 'should return hash with project access roles' do
-      expected = {name_for(Project::USER) => Project::USER, name_for(Project::MODERATOR) => Project::MODERATOR}
+      expected = {role(Project::USER) => Project::USER, role(Project::MODERATOR) => Project::MODERATOR}
       access_roles.should eq expected
     end
   end

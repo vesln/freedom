@@ -11,7 +11,7 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= user.email %></td>
-      <td><%= name_for(user.users_projects.first.access) %></td>
+      <td><%= role(user.users_projects.first.access) %></td>
       <td><%= link_to 'Edit', edit_project_users_project_path(current_project, user.users_projects.first.id) %></td>
       <td><%= link_to 'Destroy', [current_project, user.users_projects.first], confirm: 'Are you sure?', method: :delete %></td>
     </tr>

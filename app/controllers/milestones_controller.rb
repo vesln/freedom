@@ -65,7 +65,7 @@ class MilestonesController < ApplicationController
 
     respond_to do |format|
       if @milestone.save
-        format.html { redirect_to project_milestone_url(current_project, @milestone), notice: 'Milestone was successfully created.' }
+        format.html { redirect_to [current_project, @milestone], notice: 'Milestone was successfully created.' }
         format.json { render json: @milestone, status: :created, location: @milestone }
       else
         format.html { render action: "new" }
@@ -79,7 +79,7 @@ class MilestonesController < ApplicationController
 
     respond_to do |format|
       if @milestone.update_attributes(params[:milestone])
-        format.html { redirect_to project_milestone_url(current_project, @milestone), notice: 'Milestone was successfully updated.' }
+        format.html { redirect_to [current_project, @milestone], notice: 'Milestone was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

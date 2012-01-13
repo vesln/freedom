@@ -26,13 +26,13 @@
 module ProjectsHelper
   
   # Returns human name for role.
-  def name_for(role)
+  def role(role)
     @roles ||= {Project::USER => 'User', Project::MODERATOR => 'Moderator'}
     @roles[role]
   end
   
   # Returns hash with project access roles. Admin, Moderator, etc.
   def access_roles
-    {name_for(Project::USER) => Project::USER, name_for(Project::MODERATOR) => Project::MODERATOR}
+    {role(Project::USER) => Project::USER, role(Project::MODERATOR) => Project::MODERATOR}
   end
 end
