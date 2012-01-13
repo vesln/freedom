@@ -37,6 +37,13 @@ describe User do
       expected = User.joins('LEFT JOIN `users_projects` ON `users_projects`.`user_id` = `users`.`id`').where("`users_projects`.`project_id` != ? OR `users_projects`.`project_id` IS NULL", 1).to_sql
       User.not_in_project(1).to_sql.should == expected
     end
+    
+    describe 'in_project' do
+      it 'should return all users in project' do
+        expected = User.includes(:users_projects).where(['users_projects.project_id = ?', 1]).to_sql
+        User.in_project(1).to_sql.should == expected
+      end
+    end
   end
   
   describe "is_admin?" do

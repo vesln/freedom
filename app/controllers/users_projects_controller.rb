@@ -29,7 +29,7 @@ class UsersProjectsController < ApplicationController
   before_filter :authorize_admin!
   
   def index
-    @users = User.includes(:users_projects).where(['users_projects.project_id = ?', current_project.id]).all
+    @users = User.in_project(current_project.id)
 
     respond_to do |format|
       format.html

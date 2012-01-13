@@ -36,9 +36,16 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :admin, :name
   
   # Scope.
+  
+  # Users that are not in supplied project.
   scope :not_in_project, lambda { |project_id| 
     joins('LEFT JOIN `users_projects` ON `users_projects`.`user_id` = `users`.`id`')
     .where("`users_projects`.`project_id` != ? OR `users_projects`.`project_id` IS NULL", project_id) 
+  }
+  
+  # All users in supplied project.
+  scope :in_project, lambda { |project_id|
+    includes(:users_projects).where(['users_projects.project_id = ?', project_id])
   }
   
   # Checks if user is admin.
