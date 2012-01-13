@@ -29,7 +29,7 @@ class MilestonesController < ApplicationController
   before_filter :authorize_admin_or_project_moderator!
   
   def index
-    @milestones = Milestone.all
+    @milestones = Milestone.project(current_project.id)
 
     respond_to do |format|
       format.html
