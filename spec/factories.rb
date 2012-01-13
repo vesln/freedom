@@ -52,12 +52,18 @@ FactoryGirl.define do
   end
   
   factory :users_project do
-    sequence :user_id do |n|
-      n
-    end
-    sequence :project_id do |n|
-      n
-    end
+    sequence(:user_id)    { |n| n }
+    sequence(:project_id) { |n| n }
     access 1
+  end
+  
+  factory :issue do
+    title 'Something went wrong.'
+    body 'Well, I said, something went wrong.'
+    author_id 1
+    project_id 1
+    milestone_id 1
+    assignee_id 1
+    state 1
   end
 end

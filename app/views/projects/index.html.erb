@@ -15,6 +15,7 @@
   <tr>
     <td><%= project.name %></td>
     <td><%= project.description %></td>
+    <td><%= link_to 'Issues', project_issues_path(project) %></td>
     <td><%= link_to 'Milestones', project_milestones_path(project) %></td>
     <td><%= link_to 'Members', project_users_projects_path(project) %></td>
     <td><%= link_to 'Show', project %></td>

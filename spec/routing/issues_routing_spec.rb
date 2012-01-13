@@ -23,19 +23,38 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class Milestone < ActiveRecord::Base
-  
-  # Associations.
-  belongs_to :project
-  
-  # Validaton rules.
-  validates_presence_of :title
-  validates_presence_of :project_id
-  
-  # Scope.
-  # All users in supplied project.
-  scope :project, lambda { |project_id|
-    where(:project_id => project_id)
-  }
-  
+require "spec_helper"
+
+describe IssuesController do
+  describe "routing" do
+
+    it "routes to #index" do
+      get("/projects/1/issues").should route_to("issues#index", :project_id => "1")
+    end
+
+    it "routes to #new" do
+      get("/projects/1/issues/new").should route_to("issues#new", :project_id => "1")
+    end
+
+    it "routes to #show" do
+      get("/projects/1/issues/1").should route_to("issues#show", :id => "1", :project_id => "1")
+    end
+
+    it "routes to #edit" do
+      get("/projects/1/issues/1/edit").should route_to("issues#edit", :id => "1", :project_id => "1")
+    end
+
+    it "routes to #create" do
+      post("/projects/1/issues").should route_to("issues#create", :project_id => "1")
+    end
+
+    it "routes to #update" do
+      put("/projects/1/issues/1").should route_to("issues#update", :id => "1", :project_id => "1")
+    end
+
+    it "routes to #destroy" do
+      delete("/projects/1/issues/1").should route_to("issues#destroy", :id => "1", :project_id => "1")
+    end
+
+  end
 end

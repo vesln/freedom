@@ -23,19 +23,18 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class Milestone < ActiveRecord::Base
+class Issue < ActiveRecord::Base
+  
+  # State.
+  OPEN     = 0
+  RESOLVED = 1
+  HOLD     = 2
+  INVALID  = 3
   
   # Associations.
   belongs_to :project
-  
-  # Validaton rules.
-  validates_presence_of :title
-  validates_presence_of :project_id
-  
-  # Scope.
-  # All users in supplied project.
-  scope :project, lambda { |project_id|
-    where(:project_id => project_id)
-  }
+  belongs_to :milestone
+  belongs_to :author,   :class_name => "User"
+  belongs_to :assignee, :class_name => "User"
   
 end

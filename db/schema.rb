@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112102034) do
+ActiveRecord::Schema.define(:version => 20120113130200) do
+
+  create_table "issues", :force => true do |t|
+    t.string   "title",                       :null => false
+    t.text     "body",                        :null => false
+    t.integer  "author_id",                   :null => false
+    t.integer  "project_id",                  :null => false
+    t.integer  "milestone_id"
+    t.integer  "assignee_id"
+    t.integer  "state",        :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "milestones", :force => true do |t|
     t.string   "title"

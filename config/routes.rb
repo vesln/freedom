@@ -32,6 +32,7 @@ Freedom::Application.routes.draw do
   # Resources.
   resources :projects do
     resources :milestones
+    resources :issues
     resources :users_projects, :except => :show
   end
   resources :users

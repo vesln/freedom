@@ -23,19 +23,20 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class Milestone < ActiveRecord::Base
+module IssuesHelper
   
-  # Associations.
-  belongs_to :project
+  # Returns human name for state.
+  def state(state)
+    @state ||= {Issue::OPEN => 'Open', Issue::RESOLVED => 'Resolved', Issue::HOLD => 'Hold', Issue::INVALID => 'Invalid'}
+    @state[state]
+  end
   
-  # Validaton rules.
-  validates_presence_of :title
-  validates_presence_of :project_id
-  
-  # Scope.
-  # All users in supplied project.
-  scope :project, lambda { |project_id|
-    where(:project_id => project_id)
-  }
-  
+  # Returns ticket states as hash.
+  def ticket_state
+    { state(Issue::OPEN) => Issue::OPEN, 
+      state(Issue::RESOLVED) => Issue::RESOLVED, 
+      state(Issue::HOLD) => Issue::HOLD,
+      state(Issue::INVALID) => Issue::INVALID
+    }
+  end
 end

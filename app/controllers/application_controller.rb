@@ -64,4 +64,5 @@ class ApplicationController < ActionController::Base
   def handle_unauthorized
     redirect_to('/')
   end
+  
 end
