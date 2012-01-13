@@ -28,7 +28,6 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.3'
 gem 'mysql2'
 gem 'jquery-rails'
-gem 'rspec-rails', :group => [:test, :development]
 gem 'devise'
 
 # Gems used only for assets and not required
@@ -39,7 +38,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-# Test group
+# Development & test group.
+gem 'rspec-rails', :group => [:test, :development]
+
+# Test group.
 group :test do
   gem 'turn', '0.8.2', :require => false
   gem "factory_girl_rails"
