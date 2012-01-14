@@ -4,7 +4,7 @@
 
 <ul>
   <% Project.for_user(current_user.id).each do |project| %>
-    <li><%= link_to project.name, project %></li>
+    <li><%= link_to project.name, project_issues_path(project) %></li>
   <% end %>
 </ul>
 
