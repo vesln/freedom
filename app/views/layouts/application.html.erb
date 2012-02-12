@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Freedom</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Freedom</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Alex+Brush' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="top">
+      <div class="inside">
+      <ul>
+        <li><%= link_to 'Notifications', root_path %> (5)</li>
+        <li><%= link_to current_user.name, account_path %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+      </ul>
+      </div>
+    </div><!-- end of .top -->
   
-  <% if user_signed_in? %>
-    <ul>
-      <li><%= link_to 'Dashboard', root_path %></li>
-      <li><%= link_to 'Notifications', root_path %></li>
-      <% if current_user.is_admin? %>
-        <li><%= link_to 'Users', users_path %></li>
-        <li><%= link_to 'Projects', projects_path %></li>
-      <% end %>
-      <li><%= link_to 'Account', account_path %></li>
-      <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
-    </ul>
-  <% end %>
+  <div class="content">
+    <%= yield %>
+  </div><!-- end of .content -->
 
-<%= yield %>
-
-</body>
+  <footer>Freedom - &copy 2012 Veselin Todorov. MIT License.</footer>
+  </body>
 </html>
