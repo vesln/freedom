@@ -84,6 +84,17 @@ GEM
     fssm (0.2.8.1)
     gherkin (2.9.0)
       json (>= 1.4.6)
+    guard (1.0.0)
+      ffi (>= 0.5.0)
+      thor (~> 0.14.6)
+    guard-cucumber (0.7.5)
+      cucumber (>= 0.10)
+      guard (>= 0.8.3)
+    guard-rspec (0.6.0)
+      guard (>= 0.10.0)
+    guard-spork (0.5.2)
+      guard (>= 0.10.0)
+      spork (>= 0.8.4)
     hike (1.2.1)
     i18n (0.6.0)
     jasmine (1.1.2)
@@ -220,6 +231,9 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   ffaker
+  guard-cucumber
+  guard-rspec
+  guard-spork
   jasmine
   jquery-rails
   json
@@ -233,7 +247,7 @@ DEPENDENCIES
   shoulda-matchers
   simple_form
   slim
-  spork
+  spork (~> 0.9.0.rc9)
   sprockets
   timecop
   uglifier (>= 1.0.3)
