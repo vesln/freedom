@@ -1,5 +1,6 @@
 Given "I'm already registered" do
-  @user = FactoryGirl.create(:user, :password => '123456', :password_confirmation => '123456')
+  @user = FactoryGirl.attributes_for(:user)
+  FactoryGirl.create(:user, @user)
 end
 
 Given "I'm on the login page" do
@@ -11,8 +12,8 @@ Then "I should be logged in" do
 end
 
 Given 'I fill in valid credentials' do
-  fill_in('Email', :with => @user.email)
-  fill_in('Password', :with => '123456')
+  fill_in('Email', :with => @user[:email])
+  fill_in('Password', :with => @user[:password])
 end
 
 Given 'I fill in invalid credentials' do
