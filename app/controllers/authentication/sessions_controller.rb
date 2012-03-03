@@ -13,5 +13,11 @@ module Authentication
         render 'new'
       end
     end
+
+    def destroy
+      current_user_session.destroy
+      flash[:notice] = 'Successful logout'
+      redirect_to new_session_url
+    end
   end
 end

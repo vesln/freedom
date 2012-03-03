@@ -16,4 +16,4 @@ Feature: Login
     And I'm on the login page
     And I fill in invalid credentials
     And I click on "Sign in"
-    Then I see "Sorry, please try again."
+    Then I should see "Sorry, please try again."

@@ -40,5 +40,28 @@ module Authentication
         end
       end
     end
+
+    describe 'DELETE destroy' do
+      let(:user_session) { double(:user_session) }
+
+      before do
+        user_session.should_receive(:destroy)
+        controller.stub(:current_user_session).and_return(user_session)
+      end
+
+      it "logouts the current user" do
+        delete :destroy
+      end
+
+      it "redirects to login page" do
+        delete :destroy
+        response.should redirect_to(new_session_url)
+      end
+
+      it "sets a flash notice" do
+        delete :destroy
+        flash[:notice].should_not be_nil
+      end
+    end
   end
 end

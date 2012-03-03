@@ -12,10 +12,6 @@ When /^I click on "([^"]*)"$/ do |field|
   click_on field
 end
 
-Then /^I should see "([^"]*)"$/ do |text|
-  page.should have_content(text)
-end
-
 Then 'I should be registered' do
   User.count.should eql 1
 end

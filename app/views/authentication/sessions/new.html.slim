@@ -1,7 +1,8 @@
 h1 Login
 
-- if flash[:error]
-  = flash[:error]
+- [:error, :notice].each do |type|
+  - if flash[type]
+    = flash[type]
 
 = simple_form_for @user_session , :url => sessions_path do |f|
   = f.input :password
