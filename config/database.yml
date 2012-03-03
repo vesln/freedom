@@ -22,7 +22,7 @@ development:
   host: localhost
   port: 5432
 
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: freedom_test
@@ -39,3 +39,6 @@ production:
   pool: 5
   username: freedom
   password:
+
+cucumber:
+  <<: *test
