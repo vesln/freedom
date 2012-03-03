@@ -23,7 +23,7 @@ module Authentication
           post :create
         end
 
-        it "builds a new user with supplied params" do
+        it "builds a new user with the supplied params" do
           User.should_receive(:new).with('data')
           post :create, :user => 'data'
         end
