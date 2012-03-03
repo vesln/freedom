@@ -1,1 +1,2 @@
-p Logout
+- if logged_in?
+  = link_to 'Logout', session_path(current_user), :method => :delete

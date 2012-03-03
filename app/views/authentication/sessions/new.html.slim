@@ -3,7 +3,7 @@ h1 Login
 - if flash[:error]
   = flash[:error]
 
-= simple_form_for @user_session , :url => session_path do |f|
+= simple_form_for @user_session , :url => sessions_path do |f|
   = f.input :password
   = f.input :email
   = f.button :submit, :value => 'Sign in'

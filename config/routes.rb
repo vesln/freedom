@@ -3,6 +3,6 @@ Freedom::Application.routes.draw do
 
   scope :module => 'authentication' do
     resource :registration, :only => [:new, :create]
-    resource :session, :only => [:new, :create, :destroy]
+    resources :sessions, :only => [:new, :create, :destroy]
   end
 end
