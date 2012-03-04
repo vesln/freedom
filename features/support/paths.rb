@@ -13,7 +13,8 @@ module NavigationHelpers
     when /the projects page/
       projects_path
     when /the milestones page/
-      project_milestones_path(FactoryGirl.create(:project, :id => 1))
+      project = Project.find_by_id(1) || FactoryGirl.create(:project, :id => 1)
+      project_milestones_path(project)
 
     else
       begin

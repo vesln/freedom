@@ -18,11 +18,6 @@ describe ProjectsController do
   end
 
   describe 'GET new' do
-    it "renders the new template" do
-      get :new
-      controller.should render_template :new
-    end
-
     it "assigns new project to @project" do
       get :new
       assigns(:project).should be_a_new(Project)
@@ -35,14 +30,15 @@ describe ProjectsController do
       Project.stub :new => project
     end
 
-    it "builds a project with the supplied params" do
+    it "creates a new project with the supplied params" do
       Project.should_receive(:new).with('data')
+      project.should_receive(:save)
       post :create, :project => 'data'
     end
 
-    it "creates a new project" do
-      project.should_receive(:save)
+    it "assigns the project as @project" do
       post :create, :project => {}
+      assigns(:project).should eql project
     end
 
     context "with valid data" do
@@ -54,16 +50,8 @@ describe ProjectsController do
     end
 
     context "with invalid data" do
-      before do
-        project.stub(:save).and_return(false)
-      end
-
-      it "assigns the unsaved project as @project" do
-        post :create, :project => {}
-        assigns(:project).should eql project
-      end
-
       it "renders the new template" do
+        project.stub(:save).and_return(false)
         post :create, :project => {}
         controller.should render_template(:new)
       end
