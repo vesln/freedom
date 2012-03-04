@@ -20,4 +20,5 @@ Feature: Milestones
     Given I am on the milestones page
     When I follow "New milestone"
     And I press "Save"
-    Then I should see "Sorry, please try again."
+    Then I should be on the milestones page
+    And I should see "Sorry, please try again."
