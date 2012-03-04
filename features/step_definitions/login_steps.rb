@@ -20,7 +20,3 @@ Given 'I fill in invalid credentials' do
   fill_in('Email', :with => 'foo')
   fill_in('Password', :with => 'bar')
 end
-
-Then /^I should see "([^"]*)"$/ do |text|
-  page.should have_content(text)
-end
