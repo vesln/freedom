@@ -5,7 +5,7 @@ Feature: Logout
   In order to eliminate any exposure
 
   Scenario: Logout
-    Given I'm logged in
-    And I'm on the dashboard page
+    Given I am logged in
+    And I am on the dashboard page
     And I click on "Logout"
     Then I should see "Successful logout"

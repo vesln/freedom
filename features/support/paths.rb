@@ -8,6 +8,8 @@ module NavigationHelpers
       new_registration_path
     when /the login page/
       new_session_path
+    when /the dashboard page/
+      dashboard_path
 
     else
       begin

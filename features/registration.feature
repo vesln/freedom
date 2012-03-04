@@ -10,7 +10,7 @@ Feature: Registration
       | Email  | hi@vesln.com|
       | Password | top-secret |
       | Password confirmation | top-secret |
-    And I click on "Sign up"
+    And I press "Sign up"
     Then I should see "Thank you for your registration!"
     And I should be registered
 
@@ -20,5 +20,5 @@ Feature: Registration
       | Email  | hivesln.com|
       | Password | top |
       | Password confirmation | top-secret |
-    And I click on "Sign up"
+    And I press "Sign up"
     Then I should see "Please, try again."

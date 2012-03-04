@@ -8,12 +8,12 @@ Feature: Login
     Given I am already registered
     And I am on the login page
     And I fill in valid credentials
-    And I click on "Sign in"
+    And I press "Sign in"
     Then I should be logged in
 
   Scenario: Login with invalid credentials
     Given I am already registered
     And I am on the login page
     And I fill in invalid credentials
-    And I click on "Sign in"
+    And I press "Sign in"
     Then I should see "Sorry, please try again."
