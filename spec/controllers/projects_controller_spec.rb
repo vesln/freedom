@@ -18,7 +18,7 @@ describe ProjectsController do
   end
 
   describe 'GET new' do
-    it "assigns new project to @project" do
+    it "assigns a new project to @project" do
       get :new
       assigns(:project).should be_a_new(Project)
     end

@@ -19,7 +19,7 @@ describe MilestonesController do
   end
 
   describe 'GET new' do
-    it "assigns new milestone as @milestone" do
+    it "assigns a new milestone as @milestone" do
       get :new, :project_id => project_id
       assigns(:milestone).should be_a_new(Milestone)
     end
