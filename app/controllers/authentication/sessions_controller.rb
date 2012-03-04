@@ -9,7 +9,6 @@ module Authentication
       if @user_session.save
         redirect_to dashboard_url
       else
-        flash.now[:error] = 'Sorry, please try again.'
         render 'new'
       end
     end

@@ -54,8 +54,11 @@ describe ProjectsController do
     end
 
     context "with invalid data" do
-      it "assigns the unsaved project as @project" do
+      before do
         project.stub(:save).and_return(false)
+      end
+
+      it "assigns the unsaved project as @project" do
         post :create, :project => {}
         assigns(:project).should eql project
       end

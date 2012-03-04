@@ -34,10 +34,6 @@ module Authentication
         it "renders the new template" do
           response.should render_template('new')
         end
-
-        it "sets a flash error message" do
-          flash[:error].should_not be_nil
-        end
       end
     end
 

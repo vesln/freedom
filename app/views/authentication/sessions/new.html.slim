@@ -1,5 +1,8 @@
 h1 Login
 
+- if @user_session.errors.any?
+  p Sorry, please try again.
+
 - [:error, :notice].each do |type|
   - if flash[type]
     = flash[type]

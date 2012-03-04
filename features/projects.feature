@@ -17,3 +17,10 @@ Feature: Projects
     And I press "Create"
     Then I should be on the projects page
     And I should see "Freedom project"
+
+  Scenario: Create a new project with invalid data
+    Given I am on the projects page
+    And I follow "New project"
+    And I fill in "Description" with "Issue tracker"
+    And I press "Create"
+    And I should see "Sorry, please try again."
