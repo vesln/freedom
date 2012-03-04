@@ -5,5 +5,6 @@ table
     tr
       td = milestone.name
       td = link_to 'Edit', edit_project_milestone_path(current_project, milestone)
+      td = link_to 'Delete', [current_project, milestone], :confirm => 'Are you sure?', :method => :delete
 
 p = link_to 'New milestone', new_project_milestone_path

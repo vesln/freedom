@@ -32,4 +32,11 @@ class MilestonesController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    # TODO Milestone should exist
+    @milestone = Milestone.find(:first, :conditions => {:id => params[:id], :project_id => current_project.id})
+    @milestone.try :destroy
+    redirect_to project_milestones_url
+  end
 end

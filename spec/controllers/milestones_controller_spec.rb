@@ -103,4 +103,21 @@ describe MilestonesController do
       end
     end
   end
+
+  describe 'DELETE destroy' do
+    before do
+      Milestone.stub :find => milestone
+    end
+
+    it "deletes the requested milestone" do
+      Milestone.should_receive(:find).with(:first, :conditions => {:id => '1', :project_id => project_id})
+      milestone.should_receive(:destroy)
+      delete :destroy, :project_id => project_id, :id => '1'
+    end
+
+    it "redirects to milestones" do
+      delete :destroy, :project_id => project_id, :id => '1'
+      controller.should redirect_to(project_milestones_url(current_project))
+    end
+  end
 end

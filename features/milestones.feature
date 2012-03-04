@@ -31,3 +31,9 @@ Feature: Milestones
     And I press "Save"
     Then I should not see "v0.1"
     And I should see "OMG"
+
+  Scenario: Delete a milestone
+    Given There are "milestone" called "OMG OMG"
+    When I am on the milestones page
+    And I follow "Delete"
+    Then I should not see "OMG OMG"

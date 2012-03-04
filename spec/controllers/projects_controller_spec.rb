@@ -100,14 +100,17 @@ describe ProjectsController do
   end
 
   describe 'DELETE destroy' do
+    before do
+      Project.stub :find => project
+    end
+
     it "deletes the requested project" do
-      Project.should_receive(:find).with('1').and_return(project)
+      Project.should_receive(:find).with('1')
       project.should_receive(:destroy)
       delete :destroy, :id => '1'
     end
 
     it "redirects to projects" do
-      Project.stub :find => project
       delete :destroy, :id => '1'
       controller.should redirect_to(projects_url)
     end
