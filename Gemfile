@@ -22,7 +22,6 @@ end
 
 group :development do
   gem 'guard-spork'
-  gem 'active_reload'
 end
 
 group :development, :test do
