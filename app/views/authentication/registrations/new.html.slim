@@ -1,9 +1,7 @@
 h1 Sign up
 
-- if @user.errors.any?
-  p Sorry, please try again.
-
 = simple_form_for @user , :url => registration_path do |f|
+  = f.error_notification
   = f.input :email
   = f.input :password
   = f.input :password_confirmation
