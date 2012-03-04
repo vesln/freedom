@@ -13,14 +13,14 @@ describe MilestonesController do
     it "assigns milestones for the current project as @milestones" do
       milestones = [:milestone]
       Milestone.should_receive(:for_project).with(current_project).and_return(milestones)
-      get :index, :project_id => '1'
+      get :index, :project_id => project_id
       assigns(:milestones).should eql milestones
     end
   end
 
   describe 'GET new' do
     it "assigns new milestone as @milestone" do
-      get :new, :project_id => '1'
+      get :new, :project_id => project_id
       assigns(:milestone).should be_a_new(Milestone)
     end
   end
