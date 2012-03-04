@@ -10,6 +10,8 @@ module NavigationHelpers
       new_session_path
     when /the dashboard page/
       dashboard_path
+    when /the projects page/
+      projects_path
 
     else
       begin

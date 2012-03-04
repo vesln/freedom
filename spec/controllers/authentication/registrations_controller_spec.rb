@@ -45,7 +45,7 @@ module Authentication
           response.should render_template('new')
         end
 
-        it "assings the unsaved user as @user" do
+        it "assigns the unsaved user as @user" do
           assigns(:user).should eql user
         end
 

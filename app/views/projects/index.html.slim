@@ -1,0 +1,10 @@
+table
+  th Name
+  th Description
+
+  - @projects.each do |project|
+    tr
+      td = project.name
+      td = project.description
+
+p = link_to 'New project', new_project_path

@@ -1,5 +1,6 @@
 Freedom::Application.routes.draw do
   resource :dashboard
+  resources :projects
 
   scope :module => 'authentication' do
     resource :registration, :only => [:new, :create]
