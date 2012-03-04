@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe ProjectsController do
+  let (:project) { mock_model(Project) }
+
   describe 'GET index' do
     it "renders the index template" do
       get :index
@@ -28,8 +30,6 @@ describe ProjectsController do
   end
 
   describe 'POST create' do
-    let (:project) { mock_model(Project) }
-
     before do
       project.stub(:save)
       Project.stub :new => project
@@ -70,24 +70,56 @@ describe ProjectsController do
     end
   end
 
-  describe 'DELETE destroy' do
-    let(:project) { project = mock_model(Project) }
-
-    before do
-      Project.stub(:find).and_return(project)
-    end
-
-    it "finds the requested project" do
+  describe 'GET edit' do
+    it "assigns the requests project as @project" do
       Project.should_receive(:find).with('1').and_return(project)
-      delete :destroy, :id => '1'
+      get :edit, :id => '1'
+      assigns(:project).should eql project
+    end
+  end
+
+  describe 'PUT update' do
+    before do
+      Project.stub :find => project
     end
 
+    it "assigns the requests project as @project" do
+      get :edit, :id => '1'
+      assigns(:project).should eql project
+    end
+
+    it "updates the requested project" do
+      Project.should_receive(:find).with('1').and_return(project)
+      project.should_receive(:update_attributes).with('data')
+      put :update, :id => 1, :project => 'data'
+    end
+
+    describe 'with valid data' do
+      it "redirects to projects" do
+        project.stub :update_attributes => true
+        put :update, :id => 1, :project => 'data'
+        controller.should redirect_to(projects_url)
+      end
+    end
+
+    describe 'with invalid data' do
+      it "renders the new template" do
+        project.stub :update_attributes => false
+        put :update, :id => 1, :project => 'data'
+        controller.should render_template(:new)
+      end
+    end
+  end
+
+  describe 'DELETE destroy' do
     it "deletes the requested project" do
+      Project.should_receive(:find).with('1').and_return(project)
       project.should_receive(:destroy)
       delete :destroy, :id => '1'
     end
 
     it "redirects to projects" do
+      Project.stub :find => project
       delete :destroy, :id => '1'
       controller.should redirect_to(projects_url)
     end

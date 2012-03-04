@@ -30,3 +30,12 @@ Feature: Projects
     When I am on the projects page
     And I follow "Delete"
     Then I should not see "Freedom project"
+
+  Scenario: Edit a project
+    Given There are project called "Freedom project"
+    When I am on the projects page
+    And I follow "Edit"
+    And I fill in "Name" with "OMG project"
+    And I press "Save"
+    Then I should not see "Freedom project"
+    And I should see "OMG project"
