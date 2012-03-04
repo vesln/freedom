@@ -48,3 +48,7 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Given /^There are "([^"]*)" called "([^"]*)"$/ do |model, name|
+  FactoryGirl.create(model, :name => name)
+end

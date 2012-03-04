@@ -12,6 +12,8 @@ module NavigationHelpers
       dashboard_path
     when /the projects page/
       projects_path
+    when /the milestones page/
+      project_milestones_path(FactoryGirl.create(:project, :id => 1))
 
     else
       begin

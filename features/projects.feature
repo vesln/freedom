@@ -5,7 +5,7 @@ Feature: Projects
   In order to interact with issues
 
   Scenario: List all projects
-    Given There are project called "Freedom project"
+    Given There are "project" called "Freedom project"
     And I am on the projects page
     Then I should see "Freedom project"
 
@@ -26,7 +26,7 @@ Feature: Projects
     Then I should see "Sorry, please try again."
 
   Scenario: Edit a project
-    Given There are project called "Freedom project"
+    Given There are "project" called "Freedom project"
     When I am on the projects page
     And I follow "Edit"
     And I fill in "Name" with "OMG project"
@@ -35,7 +35,7 @@ Feature: Projects
     And I should see "OMG project"
 
   Scenario: Delete a project
-    Given There are project called "Freedom project"
+    Given There are "project" called "Freedom project"
     When I am on the projects page
     And I follow "Delete"
     Then I should not see "Freedom project"

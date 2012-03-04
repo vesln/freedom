@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :logged_in?, :current_user_session, :current_user
+  helper_method :logged_in?, :current_user_session, :current_user, :current_project
 
   private
 
@@ -15,5 +15,9 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!current_user
+  end
+
+  def current_project
+    @current_project ||= Project.find(params[:project_id])
   end
 end
