@@ -23,6 +23,7 @@ class MilestonesController < ApplicationController
   end
 
   def update
+    #TODO fix me.
     @milestone = Milestone.find_by_id_and_project_id(params[:id], current_project.id)
 
     if @milestone.update_attributes(params[:milestone])
