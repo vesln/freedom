@@ -13,7 +13,7 @@ test: &test
   encoding: unicode
   database: freedom_test
   pool: 5
-  username: pg
+  username: postgres
   password:
   host: localhost
   port: 5432
