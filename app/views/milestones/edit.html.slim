@@ -1,0 +1,4 @@
+= simple_form_for [current_project, @milestone] do |f|
+  = f.error_notification
+  = f.input :name
+  = f.button :submit, :value => 'Save'

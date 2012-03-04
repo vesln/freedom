@@ -22,3 +22,12 @@ Feature: Milestones
     And I press "Save"
     Then I should be on the milestones page
     And I should see "Sorry, please try again."
+
+  Scenario: Edit a milestone
+    Given There are "milestone" called "v0.1"
+    When I am on the milestones page
+    And I follow "Edit"
+    And I fill in "Name" with "OMG"
+    And I press "Save"
+    Then I should not see "v0.1"
+    And I should see "OMG"

@@ -4,5 +4,6 @@ table
   - @milestones.each do |milestone|
     tr
       td = milestone.name
+      td = link_to 'Edit', edit_project_milestone_path(current_project, milestone)
 
 p = link_to 'New milestone', new_project_milestone_path

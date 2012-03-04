@@ -17,4 +17,18 @@ class MilestonesController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @milestone = Milestone.find(params[:id])
+  end
+
+  def update
+    @milestone = Milestone.find_by_id_and_project_id(params[:id], current_project.id)
+
+    if @milestone.update_attributes(params[:milestone])
+      redirect_to project_milestones_url
+    else
+      render :edit
+    end
+  end
 end

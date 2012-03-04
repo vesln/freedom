@@ -59,7 +59,7 @@ describe ProjectsController do
   end
 
   describe 'GET edit' do
-    it "assigns the requests project as @project" do
+    it "assigns the requested project as @project" do
       Project.should_receive(:find).with('1').and_return(project)
       get :edit, :id => '1'
       assigns(:project).should eql project
@@ -71,7 +71,7 @@ describe ProjectsController do
       Project.stub :find => project
     end
 
-    it "assigns the requests project as @project" do
+    it "assigns the requested project as @project" do
       get :edit, :id => '1'
       assigns(:project).should eql project
     end
@@ -82,7 +82,7 @@ describe ProjectsController do
       put :update, :id => 1, :project => 'data'
     end
 
-    describe 'with valid data' do
+    context 'with valid data' do
       it "redirects to projects" do
         project.stub :update_attributes => true
         put :update, :id => 1, :project => 'data'
@@ -90,7 +90,7 @@ describe ProjectsController do
       end
     end
 
-    describe 'with invalid data' do
+    context 'with invalid data' do
       it "renders the edit template" do
         project.stub :update_attributes => false
         put :update, :id => 1, :project => 'data'

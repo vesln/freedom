@@ -62,4 +62,45 @@ describe MilestonesController do
       end
     end
   end
+
+  describe 'GET edit' do
+    it "assign the requested milestone as @milestone" do
+      Milestone.should_receive(:find).with('1').and_return(milestone)
+      get :edit, :project_id => project_id, :id => '1'
+      assigns(:milestone).should eql milestone
+    end
+  end
+
+  describe 'PUT update' do
+    before do
+      Milestone.stub :find_by_id_and_project_id => milestone
+    end
+
+    it "assigns the requested milestone as @milestone" do
+      Milestone.should_receive(:find_by_id_and_project_id).with('1', current_project.id)
+      milestone.stub :update_attributes => false
+      put :update, :project_id => project_id, :id => '1', :milestone => 'data'
+    end
+
+    it "updates the requested milestone" do
+      milestone.should_receive(:update_attributes).with('data')
+      put :update, :project_id => project_id, :id => '1', :milestone => 'data'
+    end
+
+    context 'with valid data' do
+      it "redirects to milestones" do
+        milestone.stub :update_attributes => true
+        put :update, :project_id => project_id, :id => '1', :milestone => 'data'
+        controller.should redirect_to(project_milestones_url(current_project))
+      end
+    end
+
+    context 'with invalid data' do
+      it "renders the edit template" do
+        milestone.stub :update_attributes => false
+        put :update, :project_id => project_id, :id => '1', :milestone => 'data'
+        controller.should render_template(:edit)
+      end
+    end
+  end
 end
