@@ -1,10 +1,6 @@
-Given "I'm already registered" do
+Given "I am already registered" do
   @user = FactoryGirl.attributes_for(:user)
   FactoryGirl.create(:user, @user)
-end
-
-Given "I'm on the login page" do
-  visit new_session_path
 end
 
 Then "I should be logged in" do

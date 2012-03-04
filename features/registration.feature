@@ -5,7 +5,7 @@ Feature: Registration
   In order to manage projects and their tasks
 
   Scenario: Sign up with valid data
-    Given I'm on the signup page
+    Given I am on the signup page
     When I fill in the following:
       | Email  | hi@vesln.com|
       | Password | top-secret |
@@ -15,7 +15,7 @@ Feature: Registration
     And I should be registered
 
   Scenario: Sign up with invalid data
-    Given I'm on the signup page
+    Given I am on the signup page
     When I fill in the following:
       | Email  | hivesln.com|
       | Password | top |
