@@ -5,7 +5,7 @@ Feature: Projects
   In order to interact with issues
 
   Scenario: List all projects
-    Given There are a project called "Freedom project"
+    Given There are project called "Freedom project"
     And I am on the projects page
     Then I should see "Freedom project"
 
@@ -23,4 +23,10 @@ Feature: Projects
     And I follow "New project"
     And I fill in "Description" with "Issue tracker"
     And I press "Create"
-    And I should see "Sorry, please try again."
+    Then I should see "Sorry, please try again."
+
+  Scenario: Delete a project
+    Given There are project called "Freedom project"
+    When I am on the projects page
+    And I follow "Delete"
+    Then I should not see "Freedom project"

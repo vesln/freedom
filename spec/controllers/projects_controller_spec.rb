@@ -69,4 +69,27 @@ describe ProjectsController do
       end
     end
   end
+
+  describe 'DELETE destroy' do
+    let(:project) { project = mock_model(Project) }
+
+    before do
+      Project.stub(:find).and_return(project)
+    end
+
+    it "finds the requested project" do
+      Project.should_receive(:find).with('1').and_return(project)
+      delete :destroy, :id => '1'
+    end
+
+    it "deletes the requested project" do
+      project.should_receive(:destroy)
+      delete :destroy, :id => '1'
+    end
+
+    it "redirects to projects" do
+      delete :destroy, :id => '1'
+      controller.should redirect_to(projects_url)
+    end
+  end
 end
