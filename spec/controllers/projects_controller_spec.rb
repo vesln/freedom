@@ -103,10 +103,10 @@ describe ProjectsController do
     end
 
     describe 'with invalid data' do
-      it "renders the new template" do
+      it "renders the edit template" do
         project.stub :update_attributes => false
         put :update, :id => 1, :project => 'data'
-        controller.should render_template(:new)
+        controller.should render_template(:edit)
       end
     end
   end

@@ -14,7 +14,7 @@ Feature: Projects
     And I follow "New project"
     And I fill in "Name" with "Freedom project"
     And I fill in "Description" with "Issue tracker"
-    And I press "Create"
+    And I press "Save"
     Then I should be on the projects page
     And I should see "Freedom project"
 
@@ -22,14 +22,8 @@ Feature: Projects
     Given I am on the projects page
     And I follow "New project"
     And I fill in "Description" with "Issue tracker"
-    And I press "Create"
+    And I press "Save"
     Then I should see "Sorry, please try again."
-
-  Scenario: Delete a project
-    Given There are project called "Freedom project"
-    When I am on the projects page
-    And I follow "Delete"
-    Then I should not see "Freedom project"
 
   Scenario: Edit a project
     Given There are project called "Freedom project"
@@ -39,3 +33,10 @@ Feature: Projects
     And I press "Save"
     Then I should not see "Freedom project"
     And I should see "OMG project"
+
+  Scenario: Delete a project
+    Given There are project called "Freedom project"
+    When I am on the projects page
+    And I follow "Delete"
+    Then I should not see "Freedom project"
+

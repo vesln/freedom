@@ -1,7 +1,1 @@
-- if @project.errors.any?
-  p Sorry, please try again.
-
-= simple_form_for @project do |f|
-  = f.input :name
-  = f.input :description
-  = f.button :submit, :value => 'Create'
+= render 'form'
