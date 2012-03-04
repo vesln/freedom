@@ -10,15 +10,29 @@ module Authentication
     end
 
     describe 'POST create' do
+      let (:user_session) { double('user_sesion') }
+
+      before do
+        user_session.stub(:save).and_return(true)
+        UserSession.stub(:new).and_return(user_session)
+      end
+
+      it "assigns the user session as @user_session" do
+        post :create, {:user => {}}
+        assigns(:user_session).should eql user_session
+      end
+
+      it "creates a new user session" do
+        user_session.should_receive(:save).and_return(true)
+        post :create
+      end
+
+      it "creates build a new user session with the supplied params" do
+        UserSession.should_receive(:new).with('data')
+        post :create, {:user_session => 'data'}
+      end
+
       context 'with valid data' do
-        before do
-          UserSession.any_instance.should_receive(:save).and_return(true)
-        end
-
-        it "creates a new user session" do
-          post :create
-        end
-
         it "redirects to dashboard" do
           post :create
           response.should redirect_to(dashboard_url)
@@ -26,12 +40,9 @@ module Authentication
       end
 
       context "with invalid data" do
-        before do
-          UserSession.any_instance.should_receive(:save).and_return(false)
-          post :create
-        end
-
         it "renders the new template" do
+          user_session.stub(:save).and_return(false)
+          post :create
           response.should render_template('new')
         end
       end

@@ -17,17 +17,22 @@ module Authentication
         user.stub :save
       end
 
+      it "creates a new user" do
+        user.should_receive(:save)
+        post :create
+      end
+
+      it "builds a new user with the supplied params" do
+        User.should_receive(:new).with('data')
+        post :create, :user => 'data'
+      end
+
+      it "assigns the user as @user" do
+        post :create, {:user => {}}
+        assigns(:user).should eql user
+      end
+
       context 'with valid date' do
-        it "creates a new user" do
-          user.should_receive(:save)
-          post :create
-        end
-
-        it "builds a new user with the supplied params" do
-          User.should_receive(:new).with('data')
-          post :create, :user => 'data'
-        end
-
         it "renders the create template" do
           user.stub(:save).and_return(true)
           post :create, {:user => {}}
@@ -36,21 +41,10 @@ module Authentication
       end
 
       context "with invalid data" do
-        before do
+        it "renders the new template" do
           user.stub(:save).and_return(false)
           post :create, {:user => {}}
-        end
-
-        it "renders the new template" do
           response.should render_template('new')
-        end
-
-        it "assigns the unsaved user as @user" do
-          assigns(:user).should eql user
-        end
-
-        it "sets a flash error message" do
-          flash[:error].should_not be_nil
         end
       end
     end

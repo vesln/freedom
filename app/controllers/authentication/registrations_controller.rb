@@ -6,10 +6,7 @@ module Authentication
 
     def create
       @user = User.new(params[:user])
-      unless @user.save
-        flash.now[:error] = 'Please, try again.'
-        render 'new'
-      end
+      render 'new' unless @user.save
     end
   end
 end

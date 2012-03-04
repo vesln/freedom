@@ -1,7 +1,7 @@
 h1 Sign up
 
-- if flash[:error]
-  = flash[:error]
+- if @user.errors.any?
+  p Sorry, please try again.
 
 = simple_form_for @user , :url => registration_path do |f|
   = f.input :email

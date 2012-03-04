@@ -21,4 +21,4 @@ Feature: Registration
       | Password | top |
       | Password confirmation | top-secret |
     And I press "Sign up"
-    Then I should see "Please, try again."
+    Then I should see "Sorry, please try again."
