@@ -6,6 +6,7 @@ module Authentication
 
     def create
       @user_session = UserSession.new(params[:user_session])
+
       if @user_session.save
         redirect_to dashboard_url
       else
@@ -15,8 +16,7 @@ module Authentication
 
     def destroy
       current_user_session.destroy
-      flash[:notice] = 'Successful logout'
-      redirect_to new_session_url
+      redirect_to new_session_url, :notice => 'Successful logout'
     end
   end
 end
