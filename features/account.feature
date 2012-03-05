@@ -1,42 +1,24 @@
-Feature: Projects
+Feature: Account management
 
-  As a user who wants to track issues
-  I want to create projects
-  In order to interact with issues
+  As a registered user
+  I should be able to change my profile information
+  In order to keep everything up to date
 
-  Scenario: List all projects
-    Given There are "project" called "Freedom project"
-    And I am on the projects page
-    Then I should see "Freedom project"
+  Scenario: Edit profile
+    Given I am logged in with "example@example.com"
+    When I am on the dashboard page
+    And I follow "Edit profile"
+    And I should see "Account Settings"
+    When I fill in "Password" with "example123"
+    And I fill in "Password confirmation" with "example123"
+    And I click on "Save"
+    Then I should be to login with "example@example.com" and "example123"
 
-  Scenario: Create a new project
-    Given I am on the projects page
-    And I follow "New project"
-    And I fill in "Name" with "Freedom project"
-    And I fill in "Description" with "Issue tracker"
-    And I press "Save"
-    Then I should be on the projects page
-    And I should see "Freedom project"
-
-  Scenario: Create a new project with invalid data
-    Given I am on the projects page
-    And I follow "New project"
-    And I fill in "Description" with "Issue tracker"
-    And I press "Save"
-    Then I should see "Sorry, please try again."
-
-  Scenario: Edit a project
-    Given There are "project" called "Freedom project"
-    When I am on the projects page
-    And I follow "Edit"
-    And I fill in "Name" with "OMG project"
-    And I press "Save"
-    Then I should not see "Freedom project"
-    And I should see "OMG project"
-
-  Scenario: Delete a project
-    Given There are "project" called "Freedom project"
-    When I am on the projects page
-    And I follow "Delete"
-    Then I should not see "Freedom project"
-
+  Scenario: Edit profile with blank password
+    Given I am registered as "example@example.com" and "123456"
+    Given I am logged in with "example@example.com"
+    When I am on the dashboard page
+    And I follow "Edit profile"
+    And I should see "Account Settings"
+    And I click on "Save"
+    Then I should be to login with "example@example.com" and "123456"
