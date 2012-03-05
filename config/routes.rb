@@ -1,5 +1,6 @@
 Freedom::Application.routes.draw do
   resource :dashboard
+  resource :account
 
   resources :projects do
     resources :milestones
