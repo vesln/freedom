@@ -1,7 +1,6 @@
 class Milestone < ActiveRecord::Base
+  attr_accessible :name
   belongs_to :project
-
-  # TODO: attr_protected :project_id ?
 
   validates_presence_of :name
   # TODO: add validates_presence_of :project_id
