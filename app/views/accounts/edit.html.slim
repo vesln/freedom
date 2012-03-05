@@ -1,6 +1,7 @@
 h1 Account Settings
 
-= simple_form_for @user, :url => account_path(@user) do |f|
+= simple_form_for @user, :url => account_path do |f|
+  = f.error_notification
   = f.input :password
   = f.input :password_confirmation
   = f.button :submit, :value => 'Save'
