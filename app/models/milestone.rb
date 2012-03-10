@@ -4,6 +4,4 @@ class Milestone < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :project_id
-
-  scope :for_project, lambda { |project| where(:project_id => project.id) }
 end
