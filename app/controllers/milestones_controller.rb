@@ -1,6 +1,6 @@
 class MilestonesController < ApplicationController
   def index
-    @milestones = Milestone.for_project current_project
+    @milestones = current_project.milestones.all
   end
 
   def new

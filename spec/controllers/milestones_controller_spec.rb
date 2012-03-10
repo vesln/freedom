@@ -14,10 +14,9 @@ describe MilestonesController do
 
   describe 'GET index' do
     it "assigns milestones for the current project" do
-      milestones = [:milestone]
-      Milestone.should_receive(:for_project).with(current_project).and_return(milestones)
+      milestones.should_receive(:all).and_return([milestone])
       get :index
-      assigns(:milestones).should eql milestones
+      assigns(:milestones).should eql [milestone]
     end
   end
 
