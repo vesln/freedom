@@ -1,21 +1,18 @@
 Feature: Login
 
-  As a registered user
-  I want to login in my account
   In order to interact with my projects
+  As a user
+  I want a secure access to them
+
+  Background:
+    Given I am already registered with "example@example.com" and "123456"
 
   Scenario: Login with valid credentials
-    Given I am already registered with "example@example.com" and "12356"
-    When I am on the login page
-    And I fill in "Email" with "example@example.com"
-    And I fill in "Password" with "12356"
-    And I press "Sign in"
+    Given I am on the login page
+    And I enter valid login credentials "example@example.com" and "123456"
     Then I should be logged in
 
   Scenario: Login with invalid credentials
-    Given I am already registered with "example@example.com" and "12356"
-    When I am on the login page
-    And I fill in "Email" with "example@example.com"
-    And I fill in "Password" with "wrong"
-    And I press "Sign in"
+    Given I am on the login page
+    And I enter invalid password for "example@example.com"
     Then I should see "Sorry, please try again."
