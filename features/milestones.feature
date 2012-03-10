@@ -1,8 +1,8 @@
 Feature: Milestones
 
+  In order to organize tasks
   As a project owner
-  I want to create milestones
-  In oreder to organize tasks.
+  I want to manage milestones
 
   Scenario: List all milestones
     Given There are "milestone" called "1.0 beta"
