@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120310210328) do
+ActiveRecord::Schema.define(:version => 20120310211100) do
 
   create_table "milestones", :force => true do |t|
-    t.string   "name"
-    t.integer  "project_id"
+    t.string   "name",       :null => false
+    t.integer  "project_id", :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20120310210328) do
   add_index "milestones", ["project_id"], :name => "index_milestones_on_project_id"
 
   create_table "projects", :force => true do |t|
-    t.string   "name"
+    t.string   "name",        :null => false
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
