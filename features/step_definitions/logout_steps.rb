@@ -1,8 +1,9 @@
 Given "I am logged in" do
-  user = FactoryGirl.create(:user)
+  self.current_user = FactoryGirl.build(:user)
+  current_user.save!
   visit path_to('the login page')
-  fill_in 'Email', :with => user.email
-  fill_in 'Password', :with => user.password
+  fill_in 'Email', :with => current_user.email
+  fill_in 'Password', :with => current_user.password
   click_button 'Sign in'
 end
 
