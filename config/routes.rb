@@ -8,7 +8,7 @@ Freedom::Application.routes.draw do
 
   scope :module => 'authentication' do
     resource :registration, :only => [:new, :create]
-    resources :sessions, :only => [:new, :create, :destroy]
+    resources :user_sessions, :only => [:new, :create, :destroy]
   end
 
   get '/backdoor-login', :to => 'backdoor_login#login' if Rails.env.test?

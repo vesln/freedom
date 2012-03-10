@@ -1,5 +1,5 @@
 module Authentication
-  class SessionsController < ApplicationController
+  class UserSessionsController < ApplicationController
     def new
       @user_session = UserSession.new
     end
@@ -10,13 +10,13 @@ module Authentication
       if @user_session.save
         redirect_to dashboard_url
       else
-        render 'new'
+        render :new
       end
     end
 
     def destroy
       current_user_session.destroy
-      redirect_to new_session_url, :notice => 'Successful logout'
+      redirect_to new_user_session_url, :notice => 'Successful logout'
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Authentication
-  describe SessionsController do
+  describe UserSessionsController do
     describe "GET new" do
       it "assigns a new user_session as @user_session" do
         get :new
@@ -62,7 +62,7 @@ module Authentication
 
       it "redirects to login page" do
         delete :destroy
-        response.should redirect_to(new_session_url)
+        response.should redirect_to(new_user_session_url)
       end
 
       it "sets a flash notice" do

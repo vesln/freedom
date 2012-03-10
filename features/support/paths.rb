@@ -7,7 +7,7 @@ module NavigationHelpers
     when /the signup page/
       new_registration_path
     when /the login page/
-      new_session_path
+      new_user_session_path
     when /the dashboard page/
       dashboard_path
     when /the projects page/
