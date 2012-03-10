@@ -41,7 +41,7 @@ class MilestonesController < ApplicationController
 
   def destroy
     @milestone = current_project.milestones.find(params[:id])
-    @milestone.try :destroy
+    @milestone.destroy
     redirect_to project_milestones_url
   end
 end
