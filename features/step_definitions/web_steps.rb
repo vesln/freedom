@@ -1,3 +1,11 @@
+#++
+# Freedom - Mind-blowing issue tracker.
+#
+# http://github.com/vesln/freedom
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+#--
+
 When /^I click on "([^"]*)"$/ do |field|
   click_on field
 end

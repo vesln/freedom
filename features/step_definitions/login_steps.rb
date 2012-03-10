@@ -1,3 +1,11 @@
+#++
+# Freedom - Mind-blowing issue tracker.
+#
+# http://github.com/vesln/freedom
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+#--
+
 Given /^I am already registered with "([^"]*)" and "([^"]*)"$/ do |email, password|
   FactoryGirl.create(:user, :email => email, :password => password, :password_confirmation => password)
 end

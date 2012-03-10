@@ -1,3 +1,11 @@
+#++
+# Freedom - Mind-blowing issue tracker.
+#
+# http://github.com/vesln/freedom
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+#--
+
 Given "I am logged in" do
   self.current_user = FactoryGirl.build(:user)
   current_user.save!

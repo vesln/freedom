@@ -1,3 +1,11 @@
+#++
+# Freedom - Mind-blowing issue tracker.
+#
+# http://github.com/vesln/freedom
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+#--
+
 When /^I change my password to "([^"]*)"$/ do |password|
   fill_in 'Password', :with => password
   fill_in 'Password confirmation', :with => password

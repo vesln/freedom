@@ -1,3 +1,11 @@
+#++
+# Freedom - Mind-blowing issue tracker.
+#
+# http://github.com/vesln/freedom
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+#--
+
 module NavigationHelpers
   def path_to(page_name)
     case page_name
