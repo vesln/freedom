@@ -1,11 +1,13 @@
 Feature: Logout
 
-  As a logged in user
-  I want to logout from my account
   In order to eliminate any exposure
+  As a user
+  I want to logout from my account
+
+  Background:
+    Given I am logged in
 
   Scenario: Logout
-    Given I am logged in
-    And I am on the dashboard page
+    When I am on the dashboard page
     And I click on "Logout"
-    Then I should see "Successful logout"
+    Then I should be logged out
