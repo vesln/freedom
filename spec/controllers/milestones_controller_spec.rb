@@ -4,9 +4,12 @@ describe MilestonesController do
   let(:current_project) { current_project = mock_model(Project, :id => 1) }
   let(:project_id) { current_project.id }
   let(:milestone) { create(:milestone, :project_id => project_id) }
+  let(:milestones) { double('milestones') }
 
   before do
     controller.stub(:current_project).and_return(current_project)
+    current_project.stub(:milestones).and_return(milestones)
+    milestones.stub(:find).and_return(milestone)
   end
 
   describe 'GET index' do
@@ -72,12 +75,8 @@ describe MilestonesController do
   end
 
   describe 'PUT update' do
-    before do
-      Milestone.stub :find_by_id_and_project_id => milestone
-    end
-
     it "assigns the requested milestone" do
-      Milestone.should_receive(:find_by_id_and_project_id).with('1', current_project.id)
+      milestones.should_receive(:find).with('1')
       milestone.stub :update_attributes => false
       put :update, :project_id => project_id, :id => '1', :milestone => 'data'
     end
@@ -105,12 +104,8 @@ describe MilestonesController do
   end
 
   describe 'DELETE destroy' do
-    before do
-      Milestone.stub :find => milestone
-    end
-
     it "deletes the requested milestone" do
-      Milestone.should_receive(:find).with(:first, :conditions => {:id => '1', :project_id => project_id})
+      milestones.should_receive(:find).with('1')
       milestone.should_receive(:destroy)
       delete :destroy, :project_id => project_id, :id => '1'
     end

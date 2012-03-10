@@ -23,8 +23,7 @@ class MilestonesController < ApplicationController
   end
 
   def update
-    # FIX
-    @milestone = Milestone.find_by_id_and_project_id(params[:id], current_project.id)
+    @milestone = current_project.milestones.find(params[:id])
 
     if @milestone.update_attributes(params[:milestone])
       redirect_to project_milestones_url
@@ -34,8 +33,7 @@ class MilestonesController < ApplicationController
   end
 
   def destroy
-    # FIX
-    @milestone = Milestone.find(:first, :conditions => {:id => params[:id], :project_id => current_project.id})
+    @milestone = current_project.milestones.find(params[:id])
     @milestone.try :destroy
     redirect_to project_milestones_url
   end
