@@ -5,9 +5,9 @@ When /^I change my password to "([^"]*)"$/ do |password|
 end
 
 Then /^I should be able to login with my new password "([^"]*)"$/ do |password|
-  UserSession.new(:email => current_user.email, :password => password).save.should === true
+  login!(current_user.email, password)
 end
 
 Then 'I should be to login with my old password' do
-  UserSession.new(:email => current_user.email, :password => current_user.password).save.should === true
+  login!(current_user.email, current_user.password)
 end
