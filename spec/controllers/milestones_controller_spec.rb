@@ -62,7 +62,7 @@ describe MilestonesController do
 
   describe 'GET edit' do
     it "assign the requested milestone" do
-      Milestone.should_receive(:find).with('1').and_return(milestone)
+      milestones.should_receive(:find).with('1').and_return(milestone)
       get :edit, :project_id => project_id, :id => '1'
       assigns(:milestone).should eql milestone
     end

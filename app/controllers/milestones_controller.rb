@@ -18,7 +18,7 @@ class MilestonesController < ApplicationController
   end
 
   def edit
-    @milestone = Milestone.find(params[:id])
+    @milestone = current_project.milestones.find(params[:id])
   end
 
   def update
