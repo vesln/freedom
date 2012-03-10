@@ -10,6 +10,13 @@ module Auth
   def login!(email, password)
     UserSession.new(:email => email, :password => password).save.should === true
   end
+
+  def register(user)
+    fill_in 'Email', :with => user.email
+    fill_in 'Password', :with => user.password
+    fill_in 'Password confirmation', :with => user.password_confirmation || user.password
+    click_on 'Sign up'
+  end
 end
 
 World(Auth)

@@ -1,24 +1,20 @@
 Feature: Registration
 
+  In order to manage projects and their tasks
   As an unregistered user
   I want to create an account
-  In order to manage projects and their tasks
 
   Scenario: Sign up with valid data
     Given I am on the signup page
-    When I fill in the following:
-      | Email  | hi@vesln.com|
-      | Password | top-secret |
-      | Password confirmation | top-secret |
-    And I press "Sign up"
-    Then I should see "Thank you for your registration!"
-    And I should be registered
+    When I fill in valid account information
+    Then I should be registered
 
-  Scenario: Sign up with invalid data
+  Scenario: Sign up with invalid email
     Given I am on the signup page
-    When I fill in the following:
-      | Email  | hivesln.com|
-      | Password | top |
-      | Password confirmation | top-secret |
-    And I press "Sign up"
-    Then I should see "Sorry, please try again."
+    When I fill in account information with invalid email
+    Then I should not be registered
+
+  Scenario: Sign up with invalid email
+    Given I am on the signup page
+    When I fill in account information with invalid password confirmation
+    Then I should not be registered
