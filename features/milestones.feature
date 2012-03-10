@@ -4,10 +4,14 @@ Feature: Milestones
   As a project owner
   I want to manage milestones
 
-  Scenario: List all milestones
-    Given There are "milestone" called "1.0 beta"
+  Background:
+    Given I am logged in
+    And I am working on project "Awesomeness"
+
+  Scenario: View all milestones
+    Given There are few existing milestones for this project
     And I am on the milestones page
-    Then I should see "1.0 beta"
+    Then I should see the milestones for the project
 
   Scenario: Create a new milestone
     Given I am on the milestones page
