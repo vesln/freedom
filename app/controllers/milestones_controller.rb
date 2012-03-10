@@ -8,8 +8,7 @@ class MilestonesController < ApplicationController
   end
 
   def create
-    @milestone = Milestone.new(params[:milestone])
-    @milestone.project = current_project
+    @milestone = current_project.milestones.new(params[:milestone])
 
     if @milestone.save
       redirect_to project_milestones_url

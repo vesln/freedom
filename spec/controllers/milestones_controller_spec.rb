@@ -29,18 +29,13 @@ describe MilestonesController do
 
   describe 'POST create' do
     before do
-      Milestone.stub :new => milestone
+      milestones.stub :new => milestone
     end
 
     it "creates a new milestone with the supplied params" do
-      Milestone.should_receive(:new).with('data')
+      milestones.should_receive(:new).with('data')
       milestone.should_receive(:save)
       post :create, :milestone => 'data'
-    end
-
-    it "sets the current project to the milestone" do
-      milestone.should_receive(:project=).with(current_project)
-      post :create, :project_id => project_id
     end
 
     it "assigns the new milestone" do
