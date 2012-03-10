@@ -14,7 +14,7 @@ class MilestonesController < ApplicationController
     if @milestone.save
       redirect_to project_milestones_url
     else
-      render :new
+      render 'new'
     end
   end
 
@@ -23,18 +23,18 @@ class MilestonesController < ApplicationController
   end
 
   def update
-    #TODO fix me.
+    # FIX
     @milestone = Milestone.find_by_id_and_project_id(params[:id], current_project.id)
 
     if @milestone.update_attributes(params[:milestone])
       redirect_to project_milestones_url
     else
-      render :edit
+      render 'edit'
     end
   end
 
   def destroy
-    # TODO Milestone should exist
+    # FIX
     @milestone = Milestone.find(:first, :conditions => {:id => params[:id], :project_id => current_project.id})
     @milestone.try :destroy
     redirect_to project_milestones_url

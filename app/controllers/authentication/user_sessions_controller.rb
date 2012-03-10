@@ -10,7 +10,7 @@ module Authentication
       if @user_session.save
         redirect_to dashboard_url
       else
-        render :new
+        render 'new'
       end
     end
 

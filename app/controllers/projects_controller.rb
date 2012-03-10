@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to projects_url
     else
-      render :new
+      render 'new'
     end
   end
 
@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
     if @project.update_attributes(params[:project])
       redirect_to projects_url
     else
-      render :edit
+      render 'edit'
     end
   end
 
