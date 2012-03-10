@@ -3,8 +3,8 @@ require 'spec_helper'
 module Authentication
   describe RegistrationsController do
     describe "GET new" do
-      it "assigns a new user as @user" do
-        get :new, {}
+      it "assigns a new user" do
+        get :new
         assigns(:user).should be_a_new(User)
       end
     end
@@ -27,7 +27,7 @@ module Authentication
         post :create, :user => 'data'
       end
 
-      it "assigns the user as @user" do
+      it "assigns the new user" do
         post :create, {:user => {}}
         assigns(:user).should eql user
       end
@@ -35,7 +35,7 @@ module Authentication
       context 'with valid date' do
         it "renders the create template" do
           user.stub(:save).and_return(true)
-          post :create, {:user => {}}
+          post :create
           response.should render_template('create')
         end
       end
@@ -43,7 +43,7 @@ module Authentication
       context "with invalid data" do
         it "renders the new template" do
           user.stub(:save).and_return(false)
-          post :create, {:user => {}}
+          post :create
           response.should render_template('new')
         end
       end

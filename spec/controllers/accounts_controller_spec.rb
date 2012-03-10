@@ -4,7 +4,7 @@ describe AccountsController do
   let(:user) { mock_model(User) }
 
   describe 'GET edit' do
-    it "assigns the current user as @user" do
+    it "assigns the current user" do
       controller.stub :current_user => user
       get :edit
       assigns(:user).should eql user

@@ -9,7 +9,7 @@ describe ProjectsController do
       controller.should render_template :index
     end
 
-    it "assigns all projects as @projects" do
+    it "assigns all projects" do
       projects = [:project]
       Project.stub(:all).and_return(projects)
       get :index
@@ -18,7 +18,7 @@ describe ProjectsController do
   end
 
   describe 'GET new' do
-    it "assigns a new project to @project" do
+    it "assigns a new project" do
       get :new
       assigns(:project).should be_a_new(Project)
     end
@@ -36,7 +36,7 @@ describe ProjectsController do
       post :create, :project => 'data'
     end
 
-    it "assigns the project as @project" do
+    it "assigns the new project" do
       post :create, :project => {}
       assigns(:project).should eql project
     end
@@ -59,7 +59,7 @@ describe ProjectsController do
   end
 
   describe 'GET edit' do
-    it "assigns the requested project as @project" do
+    it "assigns the requested project" do
       Project.should_receive(:find).with('1').and_return(project)
       get :edit, :id => '1'
       assigns(:project).should eql project
@@ -71,7 +71,7 @@ describe ProjectsController do
       Project.stub :find => project
     end
 
-    it "assigns the requested project as @project" do
+    it "assigns the requested project" do
       get :edit, :id => '1'
       assigns(:project).should eql project
     end

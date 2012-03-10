@@ -3,7 +3,7 @@ require 'spec_helper'
 module Authentication
   describe UserSessionsController do
     describe "GET new" do
-      it "assigns a new user_session as @user_session" do
+      it "assigns a new user_session" do
         get :new
         assigns(:user_session).should be_a_new(UserSession)
       end
@@ -17,8 +17,8 @@ module Authentication
         UserSession.stub(:new).and_return(user_session)
       end
 
-      it "assigns the user session as @user_session" do
-        post :create, {:user => {}}
+      it "assigns the new user session" do
+        post :create
         assigns(:user_session).should eql user_session
       end
 
