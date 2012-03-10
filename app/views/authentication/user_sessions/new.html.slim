@@ -1,8 +1,6 @@
 h1 Login
 
-- [:error, :notice].each do |type|
-  - if flash[type]
-    = flash[type]
+= render 'shared/show_flash'
 
 = simple_form_for @user_session , :url => user_sessions_path do |f|
   = f.error_notification
