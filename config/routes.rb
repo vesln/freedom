@@ -7,7 +7,8 @@ Freedom::Application.routes.draw do
   end
 
   scope :module => 'authentication' do
-    resource :registration, :only => [:new, :create]
+    get 'sign_up', :to => 'registrations#new', :as => 'sign_up'
+    post 'sign_up', :to => 'registrations#create', :as => 'sign_up'
     resources :user_sessions, :only => [:new, :create, :destroy]
   end
 

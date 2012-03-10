@@ -5,7 +5,7 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
     when /the signup page/
-      new_registration_path
+      sign_up_path
     when /the login page/
       new_user_session_path
     when /the dashboard page/
