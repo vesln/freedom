@@ -22,7 +22,7 @@ describe AccountsController do
       user.stub :update_attributes
       controller.stub :current_user => user
       put :update, :user => 'data'
-      response.should render_template(:edit)
+      response.should render_template('edit')
     end
   end
 end
