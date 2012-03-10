@@ -2,7 +2,7 @@ h1 Login
 
 = render 'shared/show_flash'
 
-= simple_form_for @user_session , :url => user_sessions_path do |f|
+= simple_form_for @user_session , :url => sign_in_path do |f|
   = f.error_notification
   = f.input :email, :error => false
   = f.input :password, :error => false

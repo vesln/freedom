@@ -16,7 +16,7 @@ module Authentication
 
     def destroy
       current_user_session.destroy
-      redirect_to new_user_session_url, :notice => 'Successful logout'
+      redirect_to sign_in_url, :notice => 'Successful logout'
     end
   end
 end

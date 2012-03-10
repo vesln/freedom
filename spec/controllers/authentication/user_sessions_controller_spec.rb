@@ -62,7 +62,7 @@ module Authentication
 
       it "redirects to login page" do
         delete :destroy
-        response.should redirect_to(new_user_session_url)
+        response.should redirect_to(sign_in_url)
       end
 
       it "sets a flash notice" do
