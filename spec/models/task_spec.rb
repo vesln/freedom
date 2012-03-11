@@ -24,6 +24,14 @@ describe Task do
     task.assigned_user_name.should == user.name
   end
 
+  it "ensures that the supplied milestone is related to its project" do
+    project = create(:project, :id => 1)
+    milestone = create(:milestone, :project_id => 2)
+    task = build(:task, :project => project, :milestone => milestone)
+    task.save
+    task.should have(1).error_on(:milestone)
+  end
+
   describe 'milestone_name' do
     context 'with milestone' do
       it "returns the milestone name" do

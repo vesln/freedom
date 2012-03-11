@@ -14,6 +14,8 @@ class Task < ActiveRecord::Base
   attr_accessible :title, :milestone_id, :state
   attr_accessible :assigned_user_id
 
+  validates :milestone, :belongs_to => :project
+
   delegate :name, :to => :assigned_user, :prefix => true,
            :allow_nil => true
 
