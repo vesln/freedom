@@ -9,6 +9,6 @@ table
       td = task.state
       td = task.title
       td = task.milestone.try :name
-      td = task.assigned_user.try :name
+      td = task.assigned_user_name
 
 p = link_to 'Create new task', new_project_task_path
