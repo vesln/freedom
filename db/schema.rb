@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120311210922) do
+ActiveRecord::Schema.define(:version => 20120311211757) do
 
   create_table "milestones", :force => true do |t|
     t.string   "name",       :null => false
@@ -30,12 +30,12 @@ ActiveRecord::Schema.define(:version => 20120311210922) do
   end
 
   create_table "tasks", :force => true do |t|
-    t.string   "title"
+    t.string   "title",            :null => false
     t.integer  "milestone_id"
     t.integer  "assigned_user_id"
     t.string   "state"
-    t.integer  "project_id"
-    t.integer  "user_id"
+    t.integer  "project_id",       :null => false
+    t.integer  "user_id",          :null => false
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.text     "description"
