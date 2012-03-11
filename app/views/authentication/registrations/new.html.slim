@@ -2,6 +2,7 @@ h1 Sign up
 
 = simple_form_for @user , :url => sign_up_path do |f|
   = f.error_notification
+  = f.input :name
   = f.input :email
   = f.input :password
   = f.input :password_confirmation

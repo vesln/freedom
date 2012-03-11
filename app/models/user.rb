@@ -7,7 +7,10 @@
 #--
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation
-  attr_accessible :password, :password_confirmation, :as => :registered
+  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :password, :password_confirmation, :as => :registered
+
+  validates_presence_of :name
+
   acts_as_authentic
 end
