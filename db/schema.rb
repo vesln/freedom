@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120311074314) do
+ActiveRecord::Schema.define(:version => 20120311210922) do
 
   create_table "milestones", :force => true do |t|
     t.string   "name",       :null => false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120311074314) do
     t.integer  "user_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.text     "description"
   end
 
   add_index "tasks", ["assigned_user_id"], :name => "index_tasks_on_assigned_user_id"
