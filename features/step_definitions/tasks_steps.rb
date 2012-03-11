@@ -28,3 +28,26 @@ Then /^I should see the following tasks:$/ do |table|
     end
   end
 end
+
+Given /^The the milestone "([^"]*)" exsit$/ do |name|
+  FactoryGirl.create(:milestone, :name => name, :project_id => current_project.id)
+end
+
+Given /^The the user "([^"]*)" exsit$/ do |name|
+  FactoryGirl.create(:user, :name => name)
+end
+
+Given /^I submit the following task information:$/ do |table|
+  fields = table.rows_hash
+  fill_in 'Title', :with => fields['title']
+  select fields['state'], :from => 'State'
+  select fields['milestone'], :from => 'Milestone'
+  select fields['assigned_user'], :from => 'Who is responsible?'
+  click_button 'Save'
+end
+
+Then /^I should see the following task:$/ do |table|
+  table.rows_hash.each_value do |value|
+    page.should have_content(value)
+  end
+end

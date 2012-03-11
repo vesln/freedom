@@ -26,6 +26,8 @@ module NavigationHelpers
       new_project_milestone_path(current_project)
     when /the tasks page/
       project_tasks_path(current_project)
+    when /the newly created task page/
+      project_task_path(current_project, Task.last)
     else
       begin
         page_name =~ /the (.*) page/
