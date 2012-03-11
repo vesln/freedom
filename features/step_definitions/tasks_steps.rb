@@ -29,11 +29,11 @@ Then /^I should see the following tasks:$/ do |table|
   end
 end
 
-Given /^The the milestone "([^"]*)" exsit$/ do |name|
+Given /^the milestone "([^"]*)" exsit$/ do |name|
   FactoryGirl.create(:milestone, :name => name, :project_id => current_project.id)
 end
 
-Given /^The the user "([^"]*)" exsit$/ do |name|
+Given /^the user "([^"]*)" exsit$/ do |name|
   FactoryGirl.create(:user, :name => name)
 end
 
