@@ -1,5 +1,6 @@
 = simple_form_for [current_project, @task] do |f|
   = f.input :title
+  = f.input :description
   = f.input :state, :collection => {:new => 'new', :open => 'open'}, :include_blank => false
   = f.label 'Milestone', :for => 'task_milestone_id'
   = f.collection_select :milestone_id, current_project.milestones.all, :id, :name

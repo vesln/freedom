@@ -33,9 +33,11 @@ Feature: Tasks
       | title         | Bug 33 |
       | milestone     | 0.1    |
       | assigned_user | John   |
+      | description   | Foobar |
     Then I should be on the newly created task page
     And I should see the following task:
       | state         | new    |
       | title         | Bug 33 |
       | milestone     | 0.1    |
       | assigned_user | John   |
+      | description   | Foobar |

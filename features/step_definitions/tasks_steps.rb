@@ -40,6 +40,7 @@ end
 Given /^I submit the following task information:$/ do |table|
   fields = table.rows_hash
   fill_in 'Title', :with => fields['title']
+  fill_in 'Description', :with => fields['description']
   select fields['state'], :from => 'State'
   select fields['milestone'], :from => 'Milestone'
   select fields['assigned_user'], :from => 'Who is responsible?'

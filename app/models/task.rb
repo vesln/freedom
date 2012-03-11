@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
   belongs_to :user
 
   attr_accessible :title, :milestone_id, :state
-  attr_accessible :assigned_user_id
+  attr_accessible :assigned_user_id, :description
 
   validates_presence_of :title
   validates_presence_of :project_id
