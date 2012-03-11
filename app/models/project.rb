@@ -8,6 +8,9 @@
 
 class Project < ActiveRecord::Base
   attr_accessible :name, :description
+
   has_many :milestones
+  has_many :tasks
+
   validates_presence_of :name
 end

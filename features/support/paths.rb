@@ -24,6 +24,8 @@ module NavigationHelpers
       project_milestones_path(current_project)
     when /the new milestone page/
       new_project_milestone_path(current_project)
+    when /the tasks page/
+      project_tasks_path(current_project)
     else
       begin
         page_name =~ /the (.*) page/

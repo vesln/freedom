@@ -4,6 +4,7 @@ Freedom::Application.routes.draw do
 
   resources :projects do
     resources :milestones
+    resources :tasks
   end
 
   scope :module => 'authentication' do

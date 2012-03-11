@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120311072736) do
+ActiveRecord::Schema.define(:version => 20120311074314) do
 
   create_table "milestones", :force => true do |t|
     t.string   "name",       :null => false
@@ -28,6 +28,22 @@ ActiveRecord::Schema.define(:version => 20120311072736) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "title"
+    t.integer  "milestone_id"
+    t.integer  "assigned_user_id"
+    t.string   "state"
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "tasks", ["assigned_user_id"], :name => "index_tasks_on_assigned_user_id"
+  add_index "tasks", ["milestone_id"], :name => "index_tasks_on_milestone_id"
+  add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"
+  add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                             :null => false

@@ -1,0 +1,12 @@
+table
+  th State
+  th Title
+  th Milestone
+  th Assigned user
+
+  - @tasks.each do |task|
+    tr
+      td = task.state
+      td = task.title
+      td = task.milestone.name
+      td = task.assigned_user.name
