@@ -13,6 +13,7 @@ gem 'slim'
 gem 'compass'
 gem 'jasmine'
 gem 'spork', '~> 0.9.0.rc9'
+gem 'validates-belongs-to'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -205,6 +205,8 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    validates-belongs-to (0.0.2)
+      activemodel (>= 3.0.0)
     vegas (0.1.11)
       rack (>= 1.0.0)
     webrat (0.7.3)
@@ -249,5 +251,6 @@ DEPENDENCIES
   sprockets
   timecop
   uglifier (>= 1.0.3)
+  validates-belongs-to
   webrat
   will_paginate (~> 3.0.pre2)
