@@ -48,7 +48,7 @@ When /^I rename the project to "([^"]*)"$/ do |name|
   click_button 'Save'
 end
 
-Then /^the project should be reanemd from "([^"]*)" to "([^"]*)"$/ do |old_name, new_name|
+Then /^the project should be renamed from "([^"]*)" to "([^"]*)"$/ do |old_name, new_name|
   page.should have_content(new_name)
   page.should_not have_content(old_name)
 end

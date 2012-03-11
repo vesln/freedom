@@ -29,7 +29,7 @@ Feature: Projects
     When I am on the projects page
     And I edit the project "Project 1"
     And I rename the project to "Project 2"
-    Then the project should be reanemd from "Project 1" to "Project 2"
+    Then the project should be renamed from "Project 1" to "Project 2"
 
   Scenario: Delete a project
     Given There are project "Project 1"
