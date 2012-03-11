@@ -24,8 +24,8 @@ Feature: Tasks
       | open   | Bug 4 | 0.1       | John          |
 
   Scenario: Create new task
-    Given the milestone "0.1" exsit
-    And the user "John" exsit
+    Given the milestone "0.1" exist
+    And the user "John" exist
     And I am on the tasks page
     And I follow "Create new task"
     And I submit the following task information:
