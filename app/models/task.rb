@@ -16,4 +16,8 @@ class Task < ActiveRecord::Base
 
   delegate :name, :to => :assigned_user, :prefix => true,
            :allow_nil => true
+
+  def milestone_name
+    milestone ? milestone.name : 'None'
+  end
 end

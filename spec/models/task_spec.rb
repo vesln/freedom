@@ -23,4 +23,21 @@ describe Task do
     task = create(:task, :assigned_user => user)
     task.assigned_user_name.should == user.name
   end
+
+  describe 'milestone_name' do
+    context 'with milestone' do
+      it "returns the milestone name" do
+        milestone = create(:milestone)
+        task = create(:task, :milestone => milestone)
+        task.milestone_name.should == milestone.name
+      end
+    end
+
+    context 'without milestone' do
+      it "returns default name" do
+        task = create(:task)
+        task.milestone_name.should == 'None'
+      end
+    end
+  end
 end
