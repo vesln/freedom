@@ -21,9 +21,9 @@ module NavigationHelpers
     when /the projects page/
       projects_path
     when /the milestones page/
-      project = Project.find_by_id(1) || FactoryGirl.create(:project, :id => 1)
-      project_milestones_path(project)
-
+      project_milestones_path(current_project)
+    when /the new milestone page/
+      new_project_milestone_path(current_project)
     else
       begin
         page_name =~ /the (.*) page/

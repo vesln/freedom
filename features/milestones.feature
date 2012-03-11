@@ -16,28 +16,24 @@ Feature: Milestones
   Scenario: Create a new milestone
     Given I am on the milestones page
     When I follow "New milestone"
-    And I fill in "Name" with "1.0 alpha"
-    And I press "Save"
-    Then I should see "1.0 alpha"
+    And I create a new milestone with name "1.0"
+    Then there should be a milestone "1.0"
 
   Scenario: Create a new milestone with invalid data
     Given I am on the milestones page
     When I follow "New milestone"
-    And I press "Save"
-    Then I should be on the milestones page
-    And I should see "Sorry, please try again."
+    And I try to create a milestone with invalid data
+    Then the milestone should not exist
 
   Scenario: Edit a milestone
-    Given There are "milestone" called "v0.1"
+    Given There are milestone "0.1"
     When I am on the milestones page
-    And I follow "Edit"
-    And I fill in "Name" with "OMG"
-    And I press "Save"
-    Then I should not see "v0.1"
-    And I should see "OMG"
+    And I edit the milestone "0.1"
+    And I rename the milestone from "0.1" to "0.2"
+    Then the milestone should be renamed from "0.1" to "0.2"
 
   Scenario: Delete a milestone
-    Given There are "milestone" called "OMG OMG"
+    Given There are milestone "0.1"
     When I am on the milestones page
-    And I follow "Delete"
-    Then I should not see "OMG OMG"
+    And I delete the milestone "0.1"
+    Then the milestone "0.1" should be deleted
