@@ -39,6 +39,7 @@ describe TasksController do
     before do
       tasks.stub :new => task
       task.stub :save
+      task.stub :user=
     end
 
     it "creates a new task with the supplied params" do
@@ -55,6 +56,13 @@ describe TasksController do
       tasks.should_receive(:new)
       post :create, :project_id => '1'
       assigns(:task).should eql task
+    end
+
+    it "sets the current user as a creator" do
+      user = double('user')
+      controller.stub :current_user => user
+      task.should_receive(:user=).with(user)
+      post :create, :project_id => '1'
     end
 
     describe 'with valid data' do
