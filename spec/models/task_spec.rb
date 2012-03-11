@@ -18,6 +18,15 @@ describe Task do
   it { should allow_mass_assignment_of :state }
   it { should allow_mass_assignment_of :assigned_user_id }
 
+  it { should validate_presence_of :title }
+  it { should validate_presence_of :project_id }
+  it { should allow_value('new').for(:state) }
+  it { should allow_value('open').for(:state) }
+  it { should allow_value('resolved').for(:state) }
+  it { should allow_value('hold').for(:state) }
+  it { should allow_value('invalid').for(:state) }
+  it { should_not allow_value('hacked').for(:state) }
+
   it "delegates assigned user name" do
     user = create(:user)
     task = create(:task, :assigned_user => user)

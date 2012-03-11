@@ -3,7 +3,7 @@ FactoryGirl.define do
     title "MyString"
     milestone_id 1
     assigned_user_id 1
-    state "MyString"
+    state "new"
     project_id 1
   end
 end

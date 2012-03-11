@@ -7,6 +7,8 @@
 #--
 
 class Task < ActiveRecord::Base
+  STATES = %w{ new open resolved hold invalid }
+
   belongs_to :project
   belongs_to :milestone
   belongs_to :assigned_user, :class_name => 'User'
@@ -14,6 +16,9 @@ class Task < ActiveRecord::Base
   attr_accessible :title, :milestone_id, :state
   attr_accessible :assigned_user_id
 
+  validates_presence_of :title
+  validates_presence_of :project_id
+  validates_inclusion_of :state, :in => STATES
   validates :milestone, :belongs_to => :project
 
   delegate :name, :to => :assigned_user, :prefix => true,
