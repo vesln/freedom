@@ -26,3 +26,7 @@ end
 When 'I fill in account information with invalid password confirmation' do
   register(FactoryGirl.build(:user, :password_confirmation => 'wrong'))
 end
+
+Then 'I should receive a welcome email' do
+  last_sent_email.body.to_s.should have_content('Welcome')
+end

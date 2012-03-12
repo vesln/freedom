@@ -18,3 +18,8 @@ Feature: Registration
     Given I am on the signup page
     When I fill in account information with invalid password confirmation
     Then I should not be registered
+
+  Scenario: Sign up welcome email
+    Given I am on the signup page
+    When I fill in valid account information
+    Then I should receive a welcome email
