@@ -23,10 +23,6 @@ class Task < ActiveRecord::Base
   validates_inclusion_of :state, :in => STATES
   validates :milestone, :belongs_to => :project
 
-  after_create  :update_completed_counter_cache
-  after_destroy :update_completed_counter_cache
-  after_update  :update_completed_counter_cache
-
   delegate :name, :to => :assigned_user, :prefix => true,
            :allow_nil => true
 
@@ -38,13 +34,5 @@ class Task < ActiveRecord::Base
 
   def milestone_name
     milestone ? milestone.name : 'None'
-  end
-
-  private
-
-  def update_completed_counter_cache
-    return unless self.milestone
-    milestone.completed_tasks_count = Task.completed(milestone.id).count
-    milestone.save
   end
 end
