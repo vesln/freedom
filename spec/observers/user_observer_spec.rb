@@ -11,11 +11,13 @@ require 'spec_helper'
 describe UserObserver do
   describe 'after_create' do
     it "sends an welcome email to the user" do
-      user = build(:user)
-      mail = double("Signup mail")
-      SignupMailer.should_receive(:welcome).with(user).and_return(mail)
-      mail.should_receive(:deliver)
-      user.save!
+      ActiveRecord::Observer.with_observers(:user_observer) do
+        user = build(:user)
+        mail = double("Signup mail")
+        SignupMailer.should_receive(:welcome).with(user).and_return(mail)
+        mail.should_receive(:deliver)
+        user.save!
+      end
     end
   end
 end
