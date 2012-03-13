@@ -1,9 +1,13 @@
 table
   th Name
+  th Tasks
+  th
+  th
 
   - @milestones.each do |milestone|
     tr
       td = milestone.name
+      td = "#{milestone.completed_tasks_count} from #{milestone.tasks_count} tasks"
       td = link_to 'Edit', edit_project_milestone_path(current_project, milestone)
       td = link_to 'Delete', [current_project, milestone], :confirm => 'Are you sure?', :method => :delete
 
