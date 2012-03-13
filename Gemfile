@@ -34,6 +34,7 @@ group :development, :test, :staging do
 end
 
 group :test do
+  gem 'no_peeping_toms'
   gem 'launchy'
   gem 'email_spec'
   gem 'shoulda-matchers'
