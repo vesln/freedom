@@ -6,6 +6,14 @@
 # MIT License
 #--
 
+#++
+# Freedom - Mind-blowing issue tracker.
+#
+# http://github.com/vesln/freedom
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+#--
+
 class Task < ActiveRecord::Base
   STATES = %w(new open resolved hold invalid)
   COMPLETED = %w(resolved invalid hold)
