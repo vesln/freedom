@@ -16,7 +16,7 @@ Feature: Milestones
   Scenario: View tasks count
     Given There are one milestone and "3" completed tasks from "10"
     And I am on the milestones page
-    Then I should see the "3 from 10"
+    Then I should see "3 from 10 tasks"
 
   Scenario: Create a new milestone
     Given I am on the milestones page

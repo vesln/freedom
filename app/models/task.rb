@@ -10,7 +10,7 @@ class Task < ActiveRecord::Base
   STATES = %w{ new open resolved hold invalid }
 
   belongs_to :project
-  belongs_to :milestone
+  belongs_to :milestone, :counter_cache => true
   belongs_to :assigned_user, :class_name => 'User'
   belongs_to :user
 

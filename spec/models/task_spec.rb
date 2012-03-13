@@ -59,4 +59,10 @@ describe Task do
       end
     end
   end
+
+  it "updates counter cache for milestone" do
+    milestone = create(:milestone)
+    task = create(:task, :milestone => milestone)
+    milestone.reload.tasks_count.should == 1
+  end
 end

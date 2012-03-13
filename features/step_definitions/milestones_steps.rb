@@ -65,3 +65,9 @@ end
 Then /^the milestone "([^"]*)" should be deleted$/ do |name|
   page.should_not have_content(name)
 end
+
+Given /^There are one milestone and "([^"]*)" completed tasks from "([^"]*)"$/ do |completed, total|
+  milestone = FactoryGirl.create(:milestone, :project => current_project)
+  1.upto(completed.to_i) { FactoryGirl.create(:completed_task, :project => current_project, :milestone => milestone) }
+  1.upto(total.to_i - completed.to_i) { FactoryGirl.create(:task, :project => current_project, :milestone => milestone) }
+end
