@@ -11,5 +11,9 @@ FactoryGirl.define do
     factory :completed_task do
       state "resolved"
     end
+
+    factory :open_task do
+      state "open"
+    end
   end
 end

@@ -19,11 +19,27 @@ describe TasksController do
   end
 
   describe 'GET index' do
-    it "assigns all tasks for the current project" do
-      project.should_receive(:tasks)
-      tasks.should_receive(:all).and_return([task])
+    before do
+      completed = double
+      completed.stub :paginate
+      tasks.stub :opened
+      tasks.stub :completed => completed
+    end
+
+    it "assigns all open tasks for the current project" do
+      tasks.stub(:opened => [task])
       get :index, :project_id => '1'
       assigns(:tasks).should eql [task]
+    end
+
+    it "assigns page of resolved tasks for the current project" do
+      completed = double('Completed tasks')
+      tasks.stub(:completed => completed)
+      completed.should_receive(:paginate)
+               .with(:page => '2', :per_page => 15)
+               .and_return([task])
+      get :index, :project_id => '1', :page => '2'
+      assigns(:completed).should eql [task]
     end
   end
 

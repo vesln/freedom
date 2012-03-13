@@ -9,6 +9,7 @@
 class Task < ActiveRecord::Base
   STATES = %w(new open resolved hold invalid)
   COMPLETED = %w(resolved invalid hold)
+  OPEN = %w(new open)
 
   attr_accessible :title, :milestone_id, :state
   attr_accessible :assigned_user_id, :description
@@ -26,11 +27,8 @@ class Task < ActiveRecord::Base
   delegate :name, :to => :assigned_user, :prefix => true,
            :allow_nil => true
 
-  class << self
-    def completed(milestone_id)
-      where(:state => Task::COMPLETED, :milestone_id => milestone_id) 
-    end
-  end
+  scope :completed, where(:state => Task::COMPLETED)
+  scope :opened , where(:state => Task::OPEN)
 
   def milestone_name
     milestone ? milestone.name : 'None'

@@ -67,11 +67,20 @@ describe Task do
   end
 
   describe 'completed' do
-    it "returns the completed tasks" do
-      milestone = create(:milestone)
-      tasks = (1..2).map { create(:completed_task, :milestone => milestone) }.reverse
-      create(:task, :milestone => milestone)
-      Task.completed(milestone.id).should == tasks
+    it "returns the completed tasks for a project" do
+      project = create(:project)
+      tasks = (1..2).map { create(:completed_task, :project => project) }.reverse
+      create(:task, :project => project)
+      project.tasks.completed.should == tasks
+    end
+  end
+
+  describe 'opened' do
+    it "returns all open tasks" do
+      project = create(:project)
+      tasks = (1..2).map { create(:task, :project => project) }.reverse
+      create(:completed_task, :project => project)
+      project.tasks.opened.should == tasks
     end
   end
 end

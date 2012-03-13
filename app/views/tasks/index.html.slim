@@ -5,7 +5,14 @@ table
   th Assigned user
 
   - @tasks.each do |task|
-    tr
+    tr class="open"
+      td = task.state
+      td = task.title
+      td = task.milestone_name
+      td = task.assigned_user_name
+
+  - @completed.each do |task|
+    tr class="completed"
       td = task.state
       td = task.title
       td = task.milestone_name

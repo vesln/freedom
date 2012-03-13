@@ -8,7 +8,8 @@
 
 class TasksController < ApplicationController
   def index
-    @tasks = current_project.tasks.all
+    @tasks = current_project.tasks.opened
+    @completed = current_project.tasks.completed.paginate(paging_params)
   end
 
   def new
@@ -28,5 +29,11 @@ class TasksController < ApplicationController
 
   def show
     @task = current_project.tasks.find(params[:id])
+  end
+
+  private
+
+  def paging_params
+    {:page => params[:page], :per_page => 15}
   end
 end

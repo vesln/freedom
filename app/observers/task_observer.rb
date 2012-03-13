@@ -20,9 +20,14 @@ class TaskObserver < ActiveRecord::Observer
   end
 
   private
+
   def update_completed_counter_cache(task)
     return unless task.milestone
-    task.milestone.completed_tasks_count = Task.completed(task.milestone.id).count
+    task.milestone.completed_tasks_count = count_for(task.milestone)
     task.milestone.save
+  end
+
+  def count_for(milestone)
+    milestone.tasks.completed.count
   end
 end

@@ -52,3 +52,13 @@ Then /^I should see the following task:$/ do |table|
     page.should have_content(value)
   end
 end
+
+Given /^there are "([^"]*)" tasks$/ do |str|
+  count, state = str.split(' ')
+  count.to_i.times { FactoryGirl.create("#{state}_task", :project => current_project) }
+end
+
+Then /^I should see "([^"]*)" completed tasks and "([^"]*)" open tasks$/ do |completed, open|
+  page.should have_css(".completed", :count => completed.to_i)
+  page.should have_css(".open", :count => open.to_i)
+end
