@@ -10,13 +10,13 @@ class Task < ActiveRecord::Base
   STATES = %w(new open resolved hold invalid)
   COMPLETED = %w(resolved invalid hold)
 
+  attr_accessible :title, :milestone_id, :state
+  attr_accessible :assigned_user_id, :description
+
   belongs_to :project
   belongs_to :milestone, :counter_cache => true
   belongs_to :assigned_user, :class_name => 'User'
   belongs_to :user
-
-  attr_accessible :title, :milestone_id, :state
-  attr_accessible :assigned_user_id, :description
 
   validates_presence_of :title
   validates_presence_of :project_id
