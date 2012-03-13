@@ -30,9 +30,11 @@ class Task < ActiveRecord::Base
   delegate :name, :to => :assigned_user, :prefix => true,
            :allow_nil => true
 
-  scope :completed, lambda { |milestone_id|
-    where(:state => Task::COMPLETED, :milestone_id => milestone_id) 
-  }
+  class << self
+    def completed(milestone_id)
+      where(:state => Task::COMPLETED, :milestone_id => milestone_id) 
+    end
+  end
 
   def milestone_name
     milestone ? milestone.name : 'None'
