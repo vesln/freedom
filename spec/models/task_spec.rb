@@ -9,16 +9,16 @@
 require 'spec_helper'
 
 describe Task do
-  it { should belong_to :project }
-  it { should belong_to :milestone }
-  it { should belong_to :assigned_user }
-  it { should belong_to :user }
-
   it { should allow_mass_assignment_of :title }
   it { should allow_mass_assignment_of :milestone_id }
   it { should allow_mass_assignment_of :state }
   it { should allow_mass_assignment_of :assigned_user_id }
   it { should allow_mass_assignment_of :description }
+
+  it { should belong_to :project }
+  it { should belong_to :milestone }
+  it { should belong_to :assigned_user }
+  it { should belong_to :user }
 
   it { should validate_presence_of :title }
   it { should validate_presence_of :project_id }
@@ -64,5 +64,15 @@ describe Task do
     milestone = create(:milestone)
     task = create(:task, :milestone => milestone)
     milestone.reload.tasks_count.should == 1
+  end
+
+  it "updates counter cache for milestone when completed" do
+    milestone = create(:milestone)
+    build(:completed_task, :milestone => milestone).save!
+    build(:task, :milestone => milestone).save!
+    task = create(:task, :milestone => milestone)
+    task.state = Task::COMPLETED.first
+    task.save!
+    milestone.reload.completed_tasks_count.should == 2
   end
 end

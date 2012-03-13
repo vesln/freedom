@@ -7,7 +7,8 @@
 #--
 
 class Task < ActiveRecord::Base
-  STATES = %w{ new open resolved hold invalid }
+  STATES = %w(new open resolved hold invalid)
+  COMPLETED = %w(resolved invalid hold)
 
   belongs_to :project
   belongs_to :milestone, :counter_cache => true
@@ -22,10 +23,26 @@ class Task < ActiveRecord::Base
   validates_inclusion_of :state, :in => STATES
   validates :milestone, :belongs_to => :project
 
+  after_create  :update_completed_counter_cache
+  after_destroy :update_completed_counter_cache
+  after_update  :update_completed_counter_cache
+
   delegate :name, :to => :assigned_user, :prefix => true,
            :allow_nil => true
 
   def milestone_name
     milestone ? milestone.name : 'None'
+  end
+
+  private
+
+  def update_completed_counter_cache
+    return unless self.milestone
+    self.milestone.completed_tasks_count = completed_tasks_count
+    self.milestone.save
+  end
+
+  def completed_tasks_count
+    Task.where(:state => Task::COMPLETED, :milestone_id => self.milestone.id).count
   end
 end

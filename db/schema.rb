@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313045953) do
+ActiveRecord::Schema.define(:version => 20120313052839) do
 
   create_table "milestones", :force => true do |t|
-    t.string   "name",                       :null => false
-    t.integer  "project_id",                 :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "tasks_count", :default => 0
+    t.string   "name",                                 :null => false
+    t.integer  "project_id",                           :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.integer  "tasks_count",           :default => 0
+    t.integer  "completed_tasks_count", :default => 0
   end
 
   add_index "milestones", ["project_id"], :name => "index_milestones_on_project_id"
