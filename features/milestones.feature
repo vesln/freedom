@@ -13,6 +13,11 @@ Feature: Milestones
     And I am on the milestones page
     Then I should see the milestones for the project
 
+  Scenario: View tasks count
+    Given There are one milestone and "3" completed tasks from "10"
+    And I am on the milestones page
+    Then I should see the "3 from 10"
+
   Scenario: Create a new milestone
     Given I am on the milestones page
     When I follow "New milestone"
