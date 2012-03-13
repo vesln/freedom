@@ -75,4 +75,13 @@ describe Task do
     task.save!
     milestone.reload.completed_tasks_count.should == 2
   end
+
+  describe 'completed' do
+    it "returns the completed tasks" do
+      milestone = create(:milestone)
+      tasks = (1..2).map { create(:completed_task, :milestone => milestone) }.reverse
+      create(:task, :milestone => milestone)
+      Task.completed(milestone.id).should == tasks
+    end
+  end
 end

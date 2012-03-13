@@ -30,6 +30,10 @@ class Task < ActiveRecord::Base
   delegate :name, :to => :assigned_user, :prefix => true,
            :allow_nil => true
 
+  scope :completed, lambda { |milestone_id|
+    where(:state => Task::COMPLETED, :milestone_id => milestone_id) 
+  }
+
   def milestone_name
     milestone ? milestone.name : 'None'
   end
@@ -38,11 +42,7 @@ class Task < ActiveRecord::Base
 
   def update_completed_counter_cache
     return unless self.milestone
-    self.milestone.completed_tasks_count = completed_tasks_count
-    self.milestone.save
-  end
-
-  def completed_tasks_count
-    Task.where(:state => Task::COMPLETED, :milestone_id => self.milestone.id).count
+    milestone.completed_tasks_count = Task.completed(milestone.id).count
+    milestone.save
   end
 end
