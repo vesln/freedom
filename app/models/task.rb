@@ -7,9 +7,9 @@
 #--
 
 class Task < ActiveRecord::Base
-  STATES = %w(new open resolved hold invalid)
   COMPLETED = %w(resolved invalid hold)
   OPEN = %w(new open)
+  STATES = COMPLETED + OPEN
 
   attr_accessible :title, :milestone_id, :state
   attr_accessible :assigned_user_id, :description
