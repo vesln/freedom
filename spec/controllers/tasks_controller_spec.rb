@@ -19,8 +19,9 @@ describe TasksController do
   end
 
   describe 'GET index' do
+    let(:completed) { completed = double('Completed tasks') }
+
     before do
-      completed = double
       completed.stub :paginate
       tasks.stub :opened
       tasks.stub :completed => completed
@@ -33,11 +34,7 @@ describe TasksController do
     end
 
     it "assigns page of resolved tasks for the current project" do
-      completed = double('Completed tasks')
-      tasks.stub(:completed => completed)
-      completed.should_receive(:paginate)
-               .with(:page => '2', :per_page => 15)
-               .and_return([task])
+      completed.should_receive(:paginate).with(:page => '2', :per_page => 15).and_return([task])
       get :index, :project_id => '1', :page => '2'
       assigns(:completed).should eql [task]
     end
