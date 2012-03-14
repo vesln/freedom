@@ -109,5 +109,12 @@ describe TasksController do
       get :show, :id => '1'
       assigns(:task).should eql task
     end
+
+    it "assigns a new comment for the current task" do
+      comment = double("Comment")
+      Comment.stub :new => comment
+      get :show, :id => '1'
+      assigns(:comment).should eql comment
+    end
   end
 end

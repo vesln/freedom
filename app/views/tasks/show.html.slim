@@ -3,3 +3,8 @@ p = @task.description
 p = @task.state
 p = @task.milestone_name
 p = @task.assigned_user_name
+
+h2 Comment
+
+= simple_form_for(@comment) do |f|
+  = f.input :body
