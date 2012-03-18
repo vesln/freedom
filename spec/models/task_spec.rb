@@ -48,14 +48,14 @@ describe Task do
       it "returns the milestone name" do
         milestone = create(:milestone)
         task = create(:task, :milestone => milestone)
-        task.milestone_name.should == milestone.name
+        task.milestone_name.should eq milestone.name
       end
     end
 
     context 'without milestone' do
       it "returns default name" do
         task = create(:task)
-        task.milestone_name.should == 'None'
+        task.milestone_name.should eq 'None'
       end
     end
   end

@@ -21,7 +21,7 @@ describe ProjectsController do
       projects = [:project]
       Project.stub(:all).and_return(projects)
       get :index
-      assigns(:projects).should eql projects
+      assigns(:projects).should eq projects
     end
   end
 
@@ -46,7 +46,7 @@ describe ProjectsController do
 
     it "assigns the new project" do
       post :create, :project => {}
-      assigns(:project).should eql project
+      assigns(:project).should eq project
     end
 
     context "with valid data" do
@@ -70,7 +70,7 @@ describe ProjectsController do
     it "assigns the requested project" do
       Project.should_receive(:find).with('1').and_return(project)
       get :edit, :id => '1'
-      assigns(:project).should eql project
+      assigns(:project).should eq project
     end
   end
 
@@ -81,7 +81,7 @@ describe ProjectsController do
 
     it "assigns the requested project" do
       get :edit, :id => '1'
-      assigns(:project).should eql project
+      assigns(:project).should eq project
     end
 
     it "updates the requested project" do

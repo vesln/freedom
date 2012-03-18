@@ -37,7 +37,7 @@ module Authentication
 
       it "assigns the new user" do
         post :create, {:user => {}}
-        assigns(:user).should eql user
+        assigns(:user).should eq user
       end
 
       context 'with valid date' do

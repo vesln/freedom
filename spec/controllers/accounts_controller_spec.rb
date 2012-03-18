@@ -15,7 +15,7 @@ describe AccountsController do
     it "assigns the current user" do
       controller.stub :current_user => user
       get :edit
-      assigns(:user).should eql user
+      assigns(:user).should eq user
     end
   end
 

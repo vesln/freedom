@@ -27,7 +27,7 @@ module Authentication
 
       it "assigns the new user session" do
         post :create
-        assigns(:user_session).should eql user_session
+        assigns(:user_session).should eq user_session
       end
 
       it "creates a new user session" do

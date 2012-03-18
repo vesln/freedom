@@ -7,11 +7,11 @@
 #--
 
 Then 'I should be registered' do
-  User.count.should eql 1
+  User.count.should eq 1
 end
 
 Then 'I should not be registered' do
-  User.count.should eql 0
+  User.count.should eq 0
   page.should have_content('Sorry')
 end
 

@@ -23,7 +23,7 @@ describe TasksController do
       project.should_receive(:tasks)
       tasks.should_receive(:all).and_return([task])
       get :index, :project_id => '1'
-      assigns(:tasks).should eql [task]
+      assigns(:tasks).should eq [task]
     end
   end
 
@@ -31,7 +31,7 @@ describe TasksController do
     it "assigns a new task for the current project" do
       tasks.should_receive(:new).and_return(task)
       get :new, :project_id => '1'
-      assigns(:task).should eql task
+      assigns(:task).should eq task
     end
   end
 
@@ -55,7 +55,7 @@ describe TasksController do
     it "assigns a new task for the current project" do
       tasks.should_receive(:new)
       post :create, :project_id => '1'
-      assigns(:task).should eql task
+      assigns(:task).should eq task
     end
 
     it "sets the current user as a creator" do
@@ -94,7 +94,7 @@ describe TasksController do
 
     it "assigns the requested task" do
       get :show, :id => '1'
-      assigns(:task).should eql task
+      assigns(:task).should eq task
     end
   end
 end

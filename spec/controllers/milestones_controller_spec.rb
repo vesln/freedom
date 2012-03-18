@@ -24,7 +24,7 @@ describe MilestonesController do
     it "assigns milestones for the current project" do
       milestones.should_receive(:all).and_return([milestone])
       get :index
-      assigns(:milestones).should eql [milestone]
+      assigns(:milestones).should eq [milestone]
     end
   end
 
@@ -48,7 +48,7 @@ describe MilestonesController do
 
     it "assigns the new milestone" do
       post :create, :project_id => project_id
-      assigns(:milestone).should eql milestone
+      assigns(:milestone).should eq milestone
     end
 
     context 'with valid data' do
@@ -72,7 +72,7 @@ describe MilestonesController do
     it "assign the requested milestone" do
       milestones.should_receive(:find).with('1').and_return(milestone)
       get :edit, :project_id => project_id, :id => '1'
-      assigns(:milestone).should eql milestone
+      assigns(:milestone).should eq milestone
     end
   end
 
