@@ -25,14 +25,6 @@ group :development do
   gem 'guard-spork'
 end
 
-group :development, :test do
-  gem 'rspec-rails'
-end
-
-group :development, :test, :staging do
-  gem 'factory_girl_rails'
-end
-
 group :test do
   gem 'no_peeping_toms'
   gem 'launchy'
@@ -48,4 +40,9 @@ group :test do
   gem 'guard-cucumber'
   gem 'database_cleaner'
   gem 'webrat'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
