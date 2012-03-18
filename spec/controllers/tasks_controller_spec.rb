@@ -36,7 +36,7 @@ describe TasksController do
     it "assigns page of resolved tasks for the current project" do
       completed.should_receive(:paginate).with(:page => '2', :per_page => 15).and_return([task])
       get :index, :project_id => '1', :page => '2'
-      assigns(:completed).should eql [task]
+      assigns(:completed).should eq [task]
     end
   end
 
