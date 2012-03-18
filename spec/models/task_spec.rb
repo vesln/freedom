@@ -9,16 +9,16 @@
 require 'spec_helper'
 
 describe Task do
-  it { should belong_to :project }
-  it { should belong_to :milestone }
-  it { should belong_to :assigned_user }
-  it { should belong_to :user }
-
   it { should allow_mass_assignment_of :title }
   it { should allow_mass_assignment_of :milestone_id }
   it { should allow_mass_assignment_of :state }
   it { should allow_mass_assignment_of :assigned_user_id }
   it { should allow_mass_assignment_of :description }
+
+  it { should belong_to :project }
+  it { should belong_to :milestone }
+  it { should belong_to :assigned_user }
+  it { should belong_to :user }
 
   it { should validate_presence_of :title }
   it { should validate_presence_of :project_id }
@@ -57,6 +57,30 @@ describe Task do
         task = create(:task)
         task.milestone_name.should eq 'None'
       end
+    end
+  end
+
+  it "updates counter cache for milestone" do
+    milestone = create(:milestone)
+    task = create(:task, :milestone => milestone)
+    milestone.reload.tasks_count.should == 1
+  end
+
+  describe 'completed' do
+    it "returns the completed tasks for a project" do
+      project = create(:project)
+      tasks = (1..2).map { create(:completed_task, :project => project) }.reverse
+      create(:task, :project => project)
+      project.tasks.completed.should == tasks
+    end
+  end
+
+  describe 'opened' do
+    it "returns all open tasks" do
+      project = create(:project)
+      tasks = (1..2).map { create(:task, :project => project) }.reverse
+      create(:completed_task, :project => project)
+      project.tasks.opened.should == tasks
     end
   end
 end

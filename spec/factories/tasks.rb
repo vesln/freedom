@@ -7,5 +7,13 @@ FactoryGirl.define do
     state "new"
     project_id 1
     user_id 1
+
+    factory :completed_task do
+      state "resolved"
+    end
+
+    factory :open_task do
+      state "open"
+    end
   end
 end

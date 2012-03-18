@@ -7,15 +7,17 @@
 #--
 
 class Task < ActiveRecord::Base
-  STATES = %w{ new open resolved hold invalid }
-
-  belongs_to :project
-  belongs_to :milestone
-  belongs_to :assigned_user, :class_name => 'User'
-  belongs_to :user
+  COMPLETED = %w(resolved invalid hold)
+  OPEN = %w(new open)
+  STATES = COMPLETED + OPEN
 
   attr_accessible :title, :milestone_id, :state
   attr_accessible :assigned_user_id, :description
+
+  belongs_to :project
+  belongs_to :milestone, :counter_cache => true
+  belongs_to :assigned_user, :class_name => 'User'
+  belongs_to :user
 
   validates_presence_of :title
   validates_presence_of :project_id
@@ -24,6 +26,9 @@ class Task < ActiveRecord::Base
 
   delegate :name, :to => :assigned_user, :prefix => true,
            :allow_nil => true
+
+  scope :completed, where(:state => Task::COMPLETED)
+  scope :opened , where(:state => Task::OPEN)
 
   def milestone_name
     milestone ? milestone.name : 'None'

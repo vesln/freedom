@@ -8,21 +8,6 @@ Feature: Tasks
     Given I am logged in
     And I am working on project "Awesomeness"
 
-  Scenario: View existing tasks
-    Given the following tasks exist:
-      | state  | title | milestone | assigned_user |
-      | new    | Bug 1 | 0.1       | John          |
-      | open   | Bug 2 | 0.1       | John          |
-      | hold   | Bug 3 | 0.1       | John          |
-      | open   | Bug 4 | 0.1       | John          |
-    And I am on the tasks page
-    Then I should see the following tasks:
-      | state  | title | milestone | assigned_user |
-      | new    | Bug 1 | 0.1       | John          |
-      | open   | Bug 2 | 0.1       | John          |
-      | hold   | Bug 3 | 0.1       | John          |
-      | open   | Bug 4 | 0.1       | John          |
-
   Scenario: Create new task
     Given the milestone "0.1" exist
     And the user "John" exist
@@ -41,3 +26,9 @@ Feature: Tasks
       | milestone     | 0.1    |
       | assigned_user | John   |
       | description   | Foobar |
+
+  Scenario: Task showing
+    Given there are "30 completed" tasks
+    And there are "10 open" tasks
+    When I am on the tasks page
+    Then I should see "15" completed tasks and "10" open tasks

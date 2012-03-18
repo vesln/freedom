@@ -9,8 +9,6 @@
 require 'spec_helper'
 
 describe User do
-  it { should validate_presence_of :name }
-
   it { should allow_mass_assignment_of(:email) }
   it { should allow_mass_assignment_of(:name) }
   it { should allow_mass_assignment_of(:password) }
@@ -22,4 +20,7 @@ describe User do
     it { should allow_mass_assignment_of(:password).as(:registered) }
     it { should allow_mass_assignment_of(:password_confirmation).as(:registered) }
   end
+
+  it { should validate_presence_of :name }
+
 end
