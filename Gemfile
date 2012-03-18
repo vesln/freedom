@@ -16,7 +16,7 @@ gem 'spork', '~> 0.9.0.rc9'
 gem 'validates-belongs-to'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
