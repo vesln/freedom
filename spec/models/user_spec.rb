@@ -22,5 +22,4 @@ describe User do
   end
 
   it { should validate_presence_of :name }
-
 end

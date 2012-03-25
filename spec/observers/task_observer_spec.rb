@@ -6,6 +6,8 @@
 # MIT License
 #--
 
+require 'spec_helper'
+
 describe TaskObserver do
   it "updates counter cache for milestone when completed" do
     ActiveRecord::Observer.with_observers(:task_observer) do
