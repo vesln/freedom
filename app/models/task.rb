@@ -18,14 +18,14 @@ class Task < ActiveRecord::Base
   belongs_to :milestone, :counter_cache => true
   belongs_to :assigned_user, :class_name => 'User'
   belongs_to :user
+  has_many   :comments
 
   validates_presence_of :title
   validates_presence_of :project_id
   validates_inclusion_of :state, :in => STATES
   validates :milestone, :belongs_to => :project
 
-  delegate :name, :to => :assigned_user, :prefix => true,
-           :allow_nil => true
+  delegate :name, :to => :assigned_user, :prefix => true, :allow_nil => true
 
   scope :completed, where(:state => Task::COMPLETED)
   scope :opened , where(:state => Task::OPEN)

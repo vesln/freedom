@@ -1,10 +1,21 @@
+#++
+# Freedom - Mind-blowing issue tracker.
+#
+# http://github.com/vesln/freedom
+# Veselin Todorov <hi@vesln.com>
+# MIT License
+#--
+
 Freedom::Application.routes.draw do
   resource :dashboard
   resource :account
 
   resources :projects do
     resources :milestones
-    resources :tasks
+
+    resources :tasks do
+      resources :comments
+    end
   end
 
   scope :module => 'authentication' do

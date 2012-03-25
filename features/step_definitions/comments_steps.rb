@@ -4,5 +4,5 @@ end
 
 When /^I fill in comment "([^"]*)"$/ do |body|
   fill_in 'Comment', :with => body
-  press_button 'Submit'
+  click_button 'Submit'
 end
