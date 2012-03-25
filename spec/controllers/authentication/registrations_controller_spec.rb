@@ -13,7 +13,7 @@ module Authentication
     describe "GET new" do
       it "assigns a new user" do
         get :new
-        assigns(:user).should be_a_new(User)
+        assigns(:user).should be_a_new User
       end
     end
 
@@ -26,33 +26,33 @@ module Authentication
       end
 
       it "creates a new user" do
-        user.should_receive(:save)
+        user.should_receive :save
         post :create
       end
 
       it "builds a new user with the supplied params" do
-        User.should_receive(:new).with('data')
+        User.should_receive(:new).with 'data'
         post :create, :user => 'data'
       end
 
       it "assigns the new user" do
-        post :create, {:user => {}}
-        assigns(:user).should eql user
+        post :create, :user => {}
+        assigns(:user).should eq user
       end
 
       context 'with valid date' do
         it "renders the create template" do
-          user.stub(:save).and_return(true)
+          user.stub(:save).and_return true
           post :create
-          response.should render_template('create')
+          response.should render_template 'create'
         end
       end
 
       context "with invalid data" do
         it "renders the new template" do
-          user.stub(:save).and_return(false)
+          user.stub(:save).and_return false
           post :create
-          response.should render_template('new')
+          response.should render_template 'new'
         end
       end
     end

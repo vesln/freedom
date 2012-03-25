@@ -15,23 +15,23 @@ describe MilestonesController do
   let(:milestones) { double('milestones') }
 
   before do
-    controller.stub(:current_project).and_return(current_project)
-    current_project.stub(:milestones).and_return(milestones)
-    milestones.stub(:find).and_return(milestone)
+    controller.stub(:current_project).and_return current_project 
+    current_project.stub(:milestones).and_return milestones
+    milestones.stub(:find).and_return milestone
   end
 
   describe 'GET index' do
     it "assigns milestones for the current project" do
-      milestones.should_receive(:all).and_return([milestone])
+      milestones.should_receive(:all).and_return [milestone]
       get :index
-      assigns(:milestones).should eql [milestone]
+      assigns(:milestones).should eq [milestone]
     end
   end
 
   describe 'GET new' do
     it "assigns a new milestone" do
       get :new
-      assigns(:milestone).should be_a_new(Milestone)
+      assigns(:milestone).should be_a_new Milestone
     end
   end
 
@@ -41,14 +41,14 @@ describe MilestonesController do
     end
 
     it "creates a new milestone with the supplied params" do
-      milestones.should_receive(:new).with('data')
-      milestone.should_receive(:save)
+      milestones.should_receive(:new).with 'data'
+      milestone.should_receive :save
       post :create, :milestone => 'data'
     end
 
     it "assigns the new milestone" do
       post :create, :project_id => project_id
-      assigns(:milestone).should eql milestone
+      assigns(:milestone).should eq milestone
     end
 
     context 'with valid data' do
@@ -63,28 +63,28 @@ describe MilestonesController do
       it "renders the new template" do
         milestone.stub :save => false
         post :create, :project_id => project_id
-        response.should render_template(:new)
+        response.should render_template :new
       end
     end
   end
 
   describe 'GET edit' do
     it "assign the requested milestone" do
-      milestones.should_receive(:find).with('1').and_return(milestone)
+      milestones.should_receive(:find).with('1').and_return milestone
       get :edit, :project_id => project_id, :id => '1'
-      assigns(:milestone).should eql milestone
+      assigns(:milestone).should eq milestone
     end
   end
 
   describe 'PUT update' do
     it "assigns the requested milestone" do
-      milestones.should_receive(:find).with('1')
+      milestones.should_receive(:find).with '1'
       milestone.stub :update_attributes => false
       put :update, :project_id => project_id, :id => '1', :milestone => 'data'
     end
 
     it "updates the requested milestone" do
-      milestone.should_receive(:update_attributes).with('data')
+      milestone.should_receive(:update_attributes).with 'data'
       put :update, :project_id => project_id, :id => '1', :milestone => 'data'
     end
 
@@ -107,8 +107,8 @@ describe MilestonesController do
 
   describe 'DELETE destroy' do
     it "deletes the requested milestone" do
-      milestones.should_receive(:find).with('1')
-      milestone.should_receive(:destroy)
+      milestones.should_receive(:find).with '1'
+      milestone.should_receive :destroy
       delete :destroy, :project_id => project_id, :id => '1'
     end
 

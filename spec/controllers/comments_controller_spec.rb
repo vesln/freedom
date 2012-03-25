@@ -16,19 +16,19 @@ describe CommentsController do
     before do
       Comment.stub :new => comment
       comment.stub :save
-      project = Factory(:project, :id => 2)
+      project = create :project, :id => 2
       controller.stub :current_task => task
       task.stub :new
       task.stub :comments
     end
 
     it "creates a new comment with the supplied data" do
-      Comment.should_receive(:new).with('data')
+      Comment.should_receive(:new).with 'data'
       post :create, :comment => 'data', :task_id => '1', :project_id => '2'
     end
 
     it "saves the comment" do
-      comment.should_receive(:save)
+      comment.should_receive :save
       post :create, :comment => 'data', :task_id => '1', :project_id => '2'
     end
 
