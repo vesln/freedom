@@ -30,13 +30,13 @@ describe TasksController do
     it "assigns all open tasks for the current project" do
       tasks.stub(:opened => [task])
       get :index, :project_id => '1'
-      assigns(:tasks).should eql [task]
+      assigns(:tasks).should eq [task]
     end
 
     it "assigns page of resolved tasks for the current project" do
       completed.should_receive(:paginate).with(:page => '2', :per_page => 15).and_return([task])
       get :index, :project_id => '1', :page => '2'
-      assigns(:completed).should eql [task]
+      assigns(:completed).should eq [task]
     end
   end
 
@@ -44,7 +44,7 @@ describe TasksController do
     it "assigns a new task for the current project" do
       tasks.should_receive(:new).and_return(task)
       get :new, :project_id => '1'
-      assigns(:task).should eql task
+      assigns(:task).should eq task
     end
   end
 
@@ -68,7 +68,7 @@ describe TasksController do
     it "assigns a new task for the current project" do
       tasks.should_receive(:new)
       post :create, :project_id => '1'
-      assigns(:task).should eql task
+      assigns(:task).should eq task
     end
 
     it "sets the current user as a creator" do
@@ -107,7 +107,7 @@ describe TasksController do
 
     it "assigns the requested task" do
       get :show, :id => '1'
-      assigns(:task).should eql task
+      assigns(:task).should eq task
     end
 
     it "assigns a new comment for the current task" do

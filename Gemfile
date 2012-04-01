@@ -16,21 +16,13 @@ gem 'spork', '~> 0.9.0.rc9'
 gem 'validates-belongs-to'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
 
 group :development do
   gem 'guard-spork'
-end
-
-group :development, :test do
-  gem 'rspec-rails'
-end
-
-group :development, :test, :staging do
-  gem 'factory_girl_rails'
 end
 
 group :test do
@@ -48,4 +40,9 @@ group :test do
   gem 'guard-cucumber'
   gem 'database_cleaner'
   gem 'webrat'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
