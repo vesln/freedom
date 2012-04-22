@@ -32,4 +32,3 @@ Spork.each_run do
   FactoryGirl.reload
   Freedom::Application.reload_routes!
 end
-
