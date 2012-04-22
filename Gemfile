@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.3'
 gem 'pg'
 gem 'jquery-rails'
 gem 'will_paginate', '~> 3.0.pre2'
@@ -45,4 +45,5 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'ruby-debug19'
 end
