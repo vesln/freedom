@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
 
   def update
     @user = current_user
-    @user.update_attributes(params[:user], :as => :registered)
-    render 'edit'
+    @user.update_attributes! params[:user], :as => :registered
+    render :edit
   end
 end

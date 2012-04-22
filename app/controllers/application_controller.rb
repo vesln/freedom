@@ -27,6 +27,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_project
-    @current_project ||= Project.find(params[:project_id])
+    @current_project ||= Project.find params[:project_id]
   end
 end

@@ -17,18 +17,18 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_project.tasks.new(params[:task])
+    @task = current_project.tasks.new params[:task]
     @task.user = current_user
 
     if @task.save
-      redirect_to project_task_url(current_project, @task)
+      redirect_to project_task_url current_project, @task
     else
-      render 'new'
+      render :new
     end
   end
 
   def show
-    @task = current_project.tasks.find(params[:id])
+    @task = current_project.tasks.find params[:id]
     @comment = Comment.new
   end
 end

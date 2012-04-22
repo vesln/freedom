@@ -30,6 +30,7 @@ class Task < ActiveRecord::Base
   scope :completed, where(:state => Task::COMPLETED)
   scope :opened , where(:state => Task::OPEN)
 
+  # Delegate & move to presente
   def milestone_name
     milestone ? milestone.name : 'None'
   end

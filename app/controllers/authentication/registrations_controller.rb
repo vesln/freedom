@@ -13,8 +13,11 @@ module Authentication
     end
 
     def create
-      @user = User.new(params[:user])
-      render 'new' unless @user.save
+      @user = User.new params[:user]
+
+      unless @user.save
+        render :new
+      end
     end
   end
 end

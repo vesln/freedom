@@ -22,12 +22,12 @@ describe AccountsController do
   describe 'PUT update' do
     it "updates the current user" do
       controller.should_receive(:current_user).and_return user
-      user.should_receive(:update_attributes).with 'data', :as => :registered
+      user.should_receive(:update_attributes!).with 'data', :as => :registered
       put :update, :user => 'data'
     end
 
     it "renders the edit template" do
-      user.stub :update_attributes
+      user.stub :update_attributes!
       controller.stub :current_user => user
       put :update, :user => 'data'
       response.should render_template('edit')

@@ -8,14 +8,14 @@
 
 class CommentsController < ApplicationController
   def create
-    @comment = current_task.comments.new(params[:comment])
+    @comment = current_task.comments.new params[:comment]
     @comment.save
-    redirect_to project_task_url(current_project, current_task)
+    redirect_to project_task_url current_project, current_task
   end
 
   private
 
   def current_task
-    @current_task ||= current_project.tasks.find(params[:task_id])
+    @current_task ||= current_project.tasks.find params[:task_id]
   end
 end

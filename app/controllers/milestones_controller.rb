@@ -16,31 +16,31 @@ class MilestonesController < ApplicationController
   end
 
   def create
-    @milestone = current_project.milestones.new(params[:milestone])
+    @milestone = current_project.milestones.new params[:milestone]
 
     if @milestone.save
       redirect_to project_milestones_url
     else
-      render 'new'
+      render :new
     end
   end
 
   def edit
-    @milestone = current_project.milestones.find(params[:id])
+    @milestone = current_project.milestones.find params[:id]
   end
 
   def update
-    @milestone = current_project.milestones.find(params[:id])
+    @milestone = current_project.milestones.find params[:id]
 
-    if @milestone.update_attributes(params[:milestone])
+    if @milestone.update_attributes params[:milestone]
       redirect_to project_milestones_url
     else
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
-    @milestone = current_project.milestones.find(params[:id])
+    @milestone = current_project.milestones.find params[:id]
     @milestone.destroy
     redirect_to project_milestones_url
   end
