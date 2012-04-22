@@ -12,9 +12,6 @@ describe Milestone do
   it { should allow_mass_assignment_of(:name) }
   it { should_not allow_mass_assignment_of(:project_id) }
 
-  it { should belong_to(:project) }
-  it { should have_many(:tasks) }
-
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:project_id) }
 

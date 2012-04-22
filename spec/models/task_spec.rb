@@ -15,12 +15,6 @@ describe Task do
   it { should allow_mass_assignment_of :assigned_user_id }
   it { should allow_mass_assignment_of :description }
 
-  it { should belong_to :project }
-  it { should belong_to :milestone }
-  it { should belong_to :assigned_user }
-  it { should belong_to :user }
-  it { should have_many :comments }
-
   it { should validate_presence_of :title }
   it { should validate_presence_of :project_id }
   it { should allow_value('new').for(:state) }
